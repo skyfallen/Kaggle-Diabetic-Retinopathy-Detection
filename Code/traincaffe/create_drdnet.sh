@@ -4,12 +4,12 @@
 
 PREPROC=size256
 
-OUTPUT=/storage/hpc_anna/Kaggle_DRD/sample_output
-INPUT=/storage/hpc_anna/Kaggle_DRD/sample_input
+CAFFEINPUT=/storage/hpc_anna/Kaggle_DRD/sample_caffeinput
+IMAGES=/storage/hpc_anna/Kaggle_DRD/sample_images
 TOOLS=$HOME/Software/Caffe/build/tools
 
-TRAIN_DATA_ROOT=$INPUT/$PREPROC/train
-VAL_DATA_ROOT=$INPUT/$PREPROC/val
+TRAIN_DATA_ROOT=$IMAGES/$PREPROC/train
+VAL_DATA_ROOT=$IMAGES/$PREPROC/val
 
 # Set RESIZE=true to resize the images to 256x256. Leave as false if images have
 # already been resized using another tool.
@@ -43,8 +43,8 @@ GLOG_logtostderr=1 $TOOLS/convert_imageset \
     --resize_width=$RESIZE_WIDTH \
     --shuffle \
     $TRAIN_DATA_ROOT/ \
-    $INPUT/train.txt \
-    $OUTPUT/$PREPROC/ilsvrc12_train_lmdb
+    $CAFFEINPUT/$PREPROC/train.txt \
+    $CAFFEINPUT/$PREPROC/ilsvrc12_train_lmdb
 
 echo "Creating val lmdb..."
 
@@ -53,7 +53,7 @@ GLOG_logtostderr=1 $TOOLS/convert_imageset \
     --resize_width=$RESIZE_WIDTH \
     --shuffle \
     $VAL_DATA_ROOT/ \
-    $INPUT/val.txt \
-    $OUTPUT/$PREPROC/ilsvrc12_val_lmdb
+    $CAFFEINPUT/$PREPROC/val.txt \
+    $CAFFEINPUT/$PREPROC/ilsvrc12_val_lmdb
 
 echo "Done."
