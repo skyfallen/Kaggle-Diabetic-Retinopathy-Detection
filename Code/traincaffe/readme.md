@@ -103,3 +103,4 @@ Many researchers have gone further since the ILSVRC 2012 challenge, changing the
 **Caffe lets you explore different network choices more easily by simply writing different prototxt files** - isn't that exciting?
 
 And since now you have a trained network, check out how to use it with the Python interface for [classifying ImageNet](http://nbviewer.ipython.org/github/BVLC/caffe/blob/master/examples/classification.ipynb).
+That is it.
