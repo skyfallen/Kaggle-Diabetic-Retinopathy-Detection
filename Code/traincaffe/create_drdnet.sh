@@ -2,12 +2,14 @@
 # Create the imagenet lmdb inputs
 # N.B. set the path to the imagenet train + val data dirs
 
-OUTPUT=/storage/hpc_anna/Kaggle_DRD/output
-INPUT=/storage/hpc_anna/Kaggle_DRD/input
+PREPROC=size256
+
+OUTPUT=/storage/hpc_anna/Kaggle_DRD/sample_output
+INPUT=/storage/hpc_anna/Kaggle_DRD/sample_input
 TOOLS=$HOME/Software/Caffe/build/tools
 
-TRAIN_DATA_ROOT=$INPUT/size256/train
-VAL_DATA_ROOT=$INPUT/size256/val
+TRAIN_DATA_ROOT=$INPUT/$PREPROC/train
+VAL_DATA_ROOT=$INPUT/$PREPROC/val
 
 # Set RESIZE=true to resize the images to 256x256. Leave as false if images have
 # already been resized using another tool.
@@ -40,9 +42,9 @@ GLOG_logtostderr=1 $TOOLS/convert_imageset \
     --resize_height=$RESIZE_HEIGHT \
     --resize_width=$RESIZE_WIDTH \
     --shuffle \
-    $TRAIN_DATA_ROOT \
-    $DATA/train.txt \
-    $EXAMPLE/ilsvrc12_train_lmdb
+    $TRAIN_DATA_ROOT/ \
+    $INPUT/train.txt \
+    $OUTPUT/$PREPROC/ilsvrc12_train_lmdb
 
 echo "Creating val lmdb..."
 
@@ -50,8 +52,8 @@ GLOG_logtostderr=1 $TOOLS/convert_imageset \
     --resize_height=$RESIZE_HEIGHT \
     --resize_width=$RESIZE_WIDTH \
     --shuffle \
-    $VAL_DATA_ROOT \
-    $DATA/val.txt \
-    $EXAMPLE/ilsvrc12_val_lmdb
+    $VAL_DATA_ROOT/ \
+    $INPUT/val.txt \
+    $OUTPUT/$PREPROC/ilsvrc12_val_lmdb
 
 echo "Done."
