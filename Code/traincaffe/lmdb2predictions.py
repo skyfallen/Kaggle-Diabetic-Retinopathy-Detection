@@ -46,9 +46,8 @@ env.close()
 
 # read test.txt
 prediction_dict = dict()
-i = 0
 with open(predictions_in_file, 'r') as f:
-	for line in f:
+	for i, line in enumerate(f):
 		prediction_dict[line.split(' ')[0]] = np.argmax(data[i, :])
 	
 # store predictions to file
@@ -57,7 +56,6 @@ with open(predictions_out_file, 'w') as f:
 		f.write(str(key) + ' ' + str(value) + '\n')
 
 
-#np.savez_compressed(npz_file, data=data, labels=labels)
 
 
 

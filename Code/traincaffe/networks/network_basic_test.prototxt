@@ -49,7 +49,7 @@ layer {
 #  }
   data_param {
     source: "/storage/hpc_anna/Kaggle_DRD/sample_caffeinput/size256/ilsvrc12_test_lmdb"
-    batch_size: 10
+    batch_size: 1
     backend: LMDB
   }
 }

@@ -9,6 +9,10 @@ IMAGES="/storage/hpc_anna/Kaggle_DRD/"$PREFIX"images"
 
 TOOLS=$HOME/Software/Caffe/build/tools
 
+echo "Removing old image mean files..."
+rm $CAFFEINPUT/$PREPROC/drdnet_mean_*
+
+echo "Computing image means..."
 $TOOLS/compute_image_mean $CAFFEINPUT/$PREPROC/ilsvrc12_train_lmdb $CAFFEINPUT/$PREPROC/drdnet_mean_train.binaryproto
 $TOOLS/compute_image_mean $CAFFEINPUT/$PREPROC/ilsvrc12_val_lmdb $CAFFEINPUT/$PREPROC/drdnet_mean_val.binaryproto
 $TOOLS/compute_image_mean $CAFFEINPUT/$PREPROC/ilsvrc12_test_lmdb $CAFFEINPUT/$PREPROC/drdnet_mean_test.binaryproto

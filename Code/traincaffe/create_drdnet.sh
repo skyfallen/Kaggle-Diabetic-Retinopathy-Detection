@@ -46,6 +46,10 @@ if [ ! -d "$TEST_DATA_ROOT" ]; then
   exit 1
 fi
 
+echo "Removing old lmdb files..."
+
+rm -rf $CAFFEINPUT/$PREPROC/ilsvrc12_*
+
 echo "Creating train lmdb..."
 
 GLOG_logtostderr=1 $TOOLS/convert_imageset \
