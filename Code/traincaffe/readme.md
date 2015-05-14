@@ -40,4 +40,6 @@ Testing parameters are given in `Code/traincaffe/networks/network_basic_test.pro
 
 #### Train the model
 Training should be started from Caffe root directory as follows:  
-```srun --partition=gpu --gres=gpu:1 --constraint=K20 --mem=10000 ./build/tools/caffe train --solver=/home/$USER/Kaggle/Diabetic-Retinopathy-Detection/Code/traincaffe/networks/solver.prototxt```
+```
+srun --partition=gpu --gres=gpu:1 --constraint=K20 --mem=10000 ./build/tools/caffe train --solver=/home/$USER/Kaggle/Diabetic-Retinopathy-Detection/Code/traincaffe/networks/solver.prototxt
+```
