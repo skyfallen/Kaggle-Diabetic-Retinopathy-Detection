@@ -51,7 +51,7 @@ GLOG_logtostderr=1 $TOOLS/convert_imageset \
     --resize_width=$RESIZE_WIDTH \
     --shuffle \
     $TRAIN_DATA_ROOT/ \
-    $CAFFEINPUT/$PREPROC/train.txt \
+    $CAFFEINPUT/train.txt \
     $CAFFEINPUT/$PREPROC/ilsvrc12_train_lmdb
 
 echo "Creating val lmdb..."
@@ -61,7 +61,7 @@ GLOG_logtostderr=1 $TOOLS/convert_imageset \
     --resize_width=$RESIZE_WIDTH \
     --shuffle \
     $VAL_DATA_ROOT/ \
-    $CAFFEINPUT/$PREPROC/val.txt \
+    $CAFFEINPUT/val.txt \
     $CAFFEINPUT/$PREPROC/ilsvrc12_val_lmdb
 
 echo "Creating test lmdb..."
@@ -71,7 +71,7 @@ GLOG_logtostderr=1 $TOOLS/convert_imageset \
     --resize_width=$RESIZE_WIDTH \
     --shuffle \
     $TEST_DATA_ROOT/ \
-    $CAFFEINPUT/$PREPROC/test.txt \
+    $CAFFEINPUT/test.txt \
     $CAFFEINPUT/$PREPROC/ilsvrc12_test_lmdb
 
 echo "Done."
