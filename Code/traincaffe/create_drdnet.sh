@@ -1,6 +1,7 @@
+
 #!/usr/bin/env sh
-# Create the imagenet lmdb inputs
-# N.B. set the path to the imagenet train + val data dirs
+# Create the Kaggle competition lmdb inputs
+# N.B. set the path to the KAggle_DRD train + val data dirs
 
 PREPROC=size256
 

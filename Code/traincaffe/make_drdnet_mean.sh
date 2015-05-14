@@ -1,5 +1,5 @@
 #!/usr/bin/env sh
-# Compute the mean image from the imagenet training lmdb
+# Compute the mean image from the Kaggle_DRD training lmdb
 # N.B. this is available in data/ilsvrc12
 
 PREPROC=size256
