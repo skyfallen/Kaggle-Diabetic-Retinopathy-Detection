@@ -10,7 +10,7 @@ layer {
   transform_param {
     mirror: false
     #crop_size: 227
-    mean_file: "/storage/hpc_anna/Kaggle_DRD/sample_caffeinput/size256/drdnet_mean.binaryproto"
+    mean_file: "/storage/hpc_anna/Kaggle_DRD/sample_caffeinput/size256/drdnet_mean_train.binaryproto"
   }
 # mean pixel / channel-wise mean instead of mean image
 #  transform_param {
@@ -37,7 +37,7 @@ layer {
   transform_param {
     mirror: false
     #crop_size: 227
-    mean_file: "/storage/hpc_anna/Kaggle_DRD/sample_caffeinput/size256/drdnet_mean.binaryproto"
+    mean_file: "/storage/hpc_anna/Kaggle_DRD/sample_caffeinput/size256/drdnet_mean_val.binaryproto"
   }
 # mean pixel / channel-wise mean instead of mean image
 #  transform_param {

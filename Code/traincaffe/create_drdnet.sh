@@ -3,10 +3,11 @@
 # Create the Kaggle competition lmdb inputs
 # N.B. set the path to the KAggle_DRD train + val data dirs
 
+PREFIX='sample_'
 PREPROC=size256
 
-CAFFEINPUT=/storage/hpc_anna/Kaggle_DRD/sample_caffeinput
-IMAGES=/storage/hpc_anna/Kaggle_DRD/sample_images
+CAFFEINPUT="/storage/hpc_anna/Kaggle_DRD/"$PREFIX"caffeinput"
+IMAGES="/storage/hpc_anna/Kaggle_DRD/"$PREFIX"images"
 TOOLS=$HOME/Software/Caffe/build/tools
 
 TRAIN_DATA_ROOT=$IMAGES/$PREPROC/train
@@ -73,5 +74,7 @@ GLOG_logtostderr=1 $TOOLS/convert_imageset \
     $TEST_DATA_ROOT/ \
     $CAFFEINPUT/test.txt \
     $CAFFEINPUT/$PREPROC/ilsvrc12_test_lmdb
+
+chmod -R 777 $CAFFEINPUT/$PREPROC/ilsvrc12_*
 
 echo "Done."
