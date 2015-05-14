@@ -69,7 +69,6 @@ echo "Creating test lmdb..."
 GLOG_logtostderr=1 $TOOLS/convert_imageset \
     --resize_height=$RESIZE_HEIGHT \
     --resize_width=$RESIZE_WIDTH \
-    --shuffle \
     $TEST_DATA_ROOT/ \
     $CAFFEINPUT/test.txt \
     $CAFFEINPUT/$PREPROC/ilsvrc12_test_lmdb
