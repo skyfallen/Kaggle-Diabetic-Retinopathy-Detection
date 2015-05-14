@@ -26,7 +26,7 @@ with env.begin() as txn:
     with txn.cursor() as curs:
         for key, value in curs:
 
-            print key
+            # print key
 
             # convert value to numpy array
             datum = caffe.proto.caffe_pb2.Datum()
@@ -45,12 +45,17 @@ with env.begin() as txn:
 env.close()
 
 # read test.txt
-#with open(predictions_in_file, 'r') as f:
+prediction_dict = dict()
+i = 0
+with open(predictions_in_file, 'r') as f:
+	for line in f:
+		prediction_dict[line.split(' ')[0]] = np.argmax(data[i, :])
 	
-
 # store predictions to file
-#with open(predictions_file, 'w') as f:
-	
+with open(predictions_out_file, 'w') as f:
+	for key, value in prediction_dict.iteritems():
+		f.write(str(key) + ' ' + str(value) + '\n')
+
 
 #np.savez_compressed(npz_file, data=data, labels=labels)
 
