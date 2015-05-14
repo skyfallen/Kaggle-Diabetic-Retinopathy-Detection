@@ -33,7 +33,11 @@ Set `snapshot_prefix:` to point at the location to store trained model(s).
 Think about all the other parameters you see in there.
 
 ##### Testing
+Testing parameters are given in `Code/traincaffe/networks/network_basic_test.prototxt`  
+`TRAIN` phase is ignored by `extract_features` when reading network activations (activations of the final layer are the predictions we are looking for)  
+* In `data` layer for `TEST` phase set `transform_param -> mean_file` to point at `caffeinput/PREPROC/drdnet_mean_test.binaryproto`
+* In `data` layer for `TEST` phase set `data_param -> source` to point at `caffeinput/PREPROC/ilsvrc12_test_lmdb`  
 
-
-#### Train 
-```./build/tools/caffe train --solver=models/bvlc_reference_caffenet/solver.prototxt```
+#### Train the model
+Training should be started from Caffe root directory as follows:  
+```srun --partition=gpu --gres=gpu:1 --constraint=K20 --mem=10000 ./build/tools/caffe train --solver=/home/$USER/Kaggle/Diabetic-Retinopathy-Detection/Code/traincaffe/networks/solver.prototxt```
