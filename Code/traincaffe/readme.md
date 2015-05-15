@@ -43,3 +43,10 @@ Training should be started from Caffe root directory as follows:
 ```
 srun --partition=gpu --gres=gpu:1 --constraint=K20 --mem=10000 ./build/tools/caffe train --solver=/home/$USER/Kaggle/Diabetic-Retinopathy-Detection/Code/traincaffe/networks/solver.prototxt
 ```
+
+#### Apply model to test images
+For some reason there is no convinient way to just apply model to new data. We use `extract_features.bin` scripts to extract activations of the last layer (`prob`).  
+After that we extract classes from LMDB base.  
+To perform these steps run `Code/traincaffe/test_drdnet.sh`.  
+Results will be stored to `/storage/hpc_anna/Kaggle_DRD/PREFIXpredictions/PREPROC/predictions_MODELNAME.txt`
+

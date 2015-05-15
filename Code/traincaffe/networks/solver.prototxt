@@ -10,5 +10,5 @@ max_iter: 450000
 momentum: 0.9
 weight_decay: 0.0005
 snapshot: 100
-snapshot_prefix: "/storage/hpc_anna/Kaggle_DRD/sample_caffeinput/size256/network_basic"
+snapshot_prefix: "/storage/hpc_anna/Kaggle_DRD/sample_caffeinput/size256/model_basic"
 solver_mode: GPU
