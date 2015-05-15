@@ -1,10 +1,18 @@
 
 #!/usr/bin/env sh
+
 # Create the Kaggle competition lmdb inputs
 # N.B. set the path to the KAggle_DRD train + val data dirs
+#
+# Usage: ./create_drdnet.sh PREFIX PREPROC
+# Example: ./create_drdnet.sh "" size256
+#
 
-PREFIX='sample_'
-PREPROC=size256
+PREFIX=$1
+SUBSET=$2
+
+echo "Running with PREFIX="$PREFIX" and PREPROC="$PREPROC
+read -n1 -r -p "Is it OK? (any key if yes, ^C if no)" key
 
 CAFFEINPUT="/storage/hpc_anna/Kaggle_DRD/"$PREFIX"caffeinput"
 IMAGES="/storage/hpc_anna/Kaggle_DRD/"$PREFIX"images"

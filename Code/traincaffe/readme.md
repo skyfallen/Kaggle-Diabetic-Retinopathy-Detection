@@ -1,12 +1,12 @@
 #### Lists of images
 First you need to produce `train.txt`, `val.txt` and `test.txt`. These files indicate which files will go for training, validation and test phases. To create those files run
-* `Code/traincaffe/make_drdnet_train_labels.sh`
-* `Code/traincaffe/make_drdnet_val_labels.sh`
-* `Code/traincaffe/make_drdnet_test_labels.sh`
+* `Code/traincaffe/make_drdnet_labels.sh "" size256 train`
+* `Code/traincaffe/make_drdnet_labels.sh "" size256 val`
+* `Code/traincaffe/make_drdnet_labels.sh "" size256 test`
 
 
 #### Create LMDB from images for Caffe
-Run `Code/traincaffe/create_drdnet.sh`
+Run `Code/traincaffe/create_drdnet.sh "" size256`
 
 
 #### Compute image means
