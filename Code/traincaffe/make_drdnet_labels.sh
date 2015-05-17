@@ -17,7 +17,11 @@ read -n1 -r -p "Is it OK? (any key if yes, ^C if no)" key
 cd "/storage/hpc_anna/Kaggle_DRD/"$PREFIX"images/"$PREPROC"/"$SUBSET
 if [ "$SUBSET" != "test" ]; then
 	ls * | sed 's/^/\^/g' > "/tmp/temp_"$SUBSET"_labels.txt"
-	egrep -f "/tmp/temp_"$SUBSET"_labels.txt" "/storage/hpc_anna/Kaggle_DRD/"$PREFIX"caffeinput/trainCaffeLables.csv" > "/storage/hpc_anna/Kaggle_DRD/"$PREFIX"caffeinput/"$SUBSET".txt"
+	touch "/storage/hpc_anna/Kaggle_DRD/"$PREFIX"caffeinput/"$SUBSET".txt"
+	while read line
+	do
+		grep -e $line "/storage/hpc_anna/Kaggle_DRD/"$PREFIX"caffeinput/trainCaffeLables.csv" >> "/storage/hpc_anna/Kaggle_DRD/"$PREFIX"caffeinput/"$SUBSET".txt"
+	done < "/tmp/temp_"$SUBSET"_labels.txt"
 	rm "/tmp/temp_"$SUBSET"_labels.txt"
 else
 	ls * | sed 's/$/ 0/' > "/storage/hpc_anna/Kaggle_DRD/"$PREFIX"caffeinput/test.txt"
