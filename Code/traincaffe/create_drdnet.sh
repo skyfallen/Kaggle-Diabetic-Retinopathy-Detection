@@ -9,7 +9,7 @@
 #
 
 PREFIX=$1
-SUBSET=$2
+PREPROC=$2
 
 echo "Running with PREFIX="$PREFIX" and PREPROC="$PREPROC
 read -n1 -r -p "Is it OK? (any key if yes, ^C if no)" key
