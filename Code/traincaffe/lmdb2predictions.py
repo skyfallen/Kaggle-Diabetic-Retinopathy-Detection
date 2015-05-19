@@ -5,16 +5,17 @@ import lmdb
 import numpy as np
 import caffe
 
-if len(sys.argv) < 3:
-  print 'Usage:', sys.argv[0], '<preprocessing_type> <model_name>'
-  print 'Usage example: python lmdb2predictions.py size256 basic'
+if len(sys.argv) < 4:
+  print 'Usage:', sys.argv[0], '<preprocessing_type> <model_name> <subset>'
+  print 'Usage example: python lmdb2predictions.py size256 basic test'
   sys.exit(2)
 
 preprocessing_type = sys.argv[1]
 model_name = sys.argv[2]
-features_lmdb_path = '/storage/hpc_anna/Kaggle_DRD/sample_features/' + preprocessing_type + '/features_' + model_name
-predictions_in_file = '/storage/hpc_anna/Kaggle_DRD/sample_caffeinput/test.txt'
-predictions_out_file = '/storage/hpc_anna/Kaggle_DRD/sample_predictions/' + preprocessing_type + '/predictions_' + model_name + '.txt'
+subset = sys.argv[3]
+features_lmdb_path = '/storage/hpc_anna/Kaggle_DRD/sample_features/' + preprocessing_type + '/features_' + model_name + '_' + subset
+predictions_in_file = '/storage/hpc_anna/Kaggle_DRD/sample_caffeinput/' + subset + '.txt'
+predictions_out_file = '/storage/hpc_anna/Kaggle_DRD/sample_predictions/' + preprocessing_type + '/predictions_' + model_name + '_' + subset + '.txt'
 
 env = lmdb.open(features_lmdb_path)
 env_stat = env.stat()
