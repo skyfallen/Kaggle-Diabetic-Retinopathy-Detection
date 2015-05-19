@@ -1,12 +1,19 @@
 #!/usr/bin/env sh
 # Compute the mean image from the Kaggle_DRD training lmdb
 # N.B. this is available in data/ilsvrc12
+#
+# Usage: ./create_drdnet.sh PREFIX PREPROC
+# Example: ./create_drdnet.sh "" size256
+#
 
-PREFIX="sample_"
-PREPROC=size256
+PREFIX=$1
+PREPROC=$2
+
+echo "Running with PREFIX="$PREFIX" and PREPROC="$PREPROC
+read -n1 -r -p "Is it OK? (any key if yes, ^C if no)" key
+
 CAFFEINPUT="/storage/hpc_anna/Kaggle_DRD/"$PREFIX"caffeinput"
 IMAGES="/storage/hpc_anna/Kaggle_DRD/"$PREFIX"images"
-
 TOOLS=$HOME/Software/Caffe/build/tools
 
 echo "Removing old image mean files..."

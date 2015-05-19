@@ -16,7 +16,7 @@ Run `Code/traincaffe/make_drdnet_mean.sh`
 
 #### Prepare .prototxt files
 ##### Training and validation
-Describe your network (for examples `Code/traincaffe/networks/network_basic.prototxt`)  
+Describe your network (for examples `Code/traincaffe/networks/MODELNAME/network_MODELNAME.prototxt`)  
 * Training parameters
   * In `data` layer for `TRAIN` phase set `transform_param -> mean_file` to point at `caffeinput/PREPROC/drdnet_mean_train.binaryproto`  
   * In `data` layer for `TRAIN` phase set `data_param -> source` to point at `caffeinput/PREPROC/ilsvrc12_train_lmdb`  
@@ -24,16 +24,17 @@ Describe your network (for examples `Code/traincaffe/networks/network_basic.prot
   * In `data` layer for `TEST` phase set `transform_param -> mean_file` to point at `caffeinput/PREPROC/drdnet_mean_val.binaryproto`
   * In `data` layer for `TEST` phase set `data_param -> source` to point at `caffeinput/PREPROC/ilsvrc12_val_lmdb`  
 
-where `PREPROC` is the preprocessing type (for example `size256`)
+where `PREPROC` is the preprocessing type (for example `size256`),
+and `MODELNAME` is name of the current model (for example `basic`).
 
 ##### Solver
 `solver.prototxt` lists training parameters.  
-Set `net:` to point at the network structure description for training and validation(for exampe `Code/traincaffe/networks/network_basic.prototxt`).  
+Set `net:` to point at the network structure description for training and validation(for exampe `Code/traincaffe/networks/MODELNAME/network_MODELNAME.prototxt`).  
 Set `snapshot_prefix:` to point at the location to store trained model(s).  
 Think about all the other parameters you see in there.
 
 ##### Testing
-Testing parameters are given in `Code/traincaffe/networks/network_basic_test.prototxt`  
+Testing parameters are given in `Code/traincaffe/networks/MODELNAME/network_MODELNAME_test.prototxt`  
 `TRAIN` phase is ignored by `extract_features` when reading network activations (activations of the final layer are the predictions we are looking for)  
 * In `data` layer for `TEST` phase set `transform_param -> mean_file` to point at `caffeinput/PREPROC/drdnet_mean_test.binaryproto`
 * In `data` layer for `TEST` phase set `data_param -> source` to point at `caffeinput/PREPROC/ilsvrc12_test_lmdb`  
@@ -41,7 +42,7 @@ Testing parameters are given in `Code/traincaffe/networks/network_basic_test.pro
 #### Train the model
 Training should be started from Caffe root directory as follows:  
 ```
-srun --partition=gpu --gres=gpu:1 --constraint=K20 --mem=10000 ./build/tools/caffe train --solver=/home/$USER/Kaggle/Diabetic-Retinopathy-Detection/Code/traincaffe/networks/solver.prototxt
+srun --partition=gpu --gres=gpu:1 --constraint=K20 --mem=10000 ./build/tools/caffe train --solver=/home/$USER/Kaggle/Diabetic-Retinopathy-Detection/Code/traincaffe/networks/MODELNAME/network_MODELNAME_solver.prototxt
 ```
 
 #### Apply model to test images
