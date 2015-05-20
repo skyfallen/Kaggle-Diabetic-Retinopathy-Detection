@@ -1,6 +1,6 @@
 net: "/home/hpc_anna1985/Kaggle/Diabetic-Retinopathy-Detection/Code/traincaffe/networks/minimal/network_minimal.prototxt"
-test_iter: 1000
-test_interval: 1000
+test_iter: 100
+test_interval: 20
 base_lr: 0.01
 lr_policy: "step"
 gamma: 0.1
@@ -9,6 +9,6 @@ display: 20
 max_iter: 450000
 momentum: 0.9
 weight_decay: 0.0005
-snapshot: 1000
-snapshot_prefix: "/storage/hpc_anna/Kaggle_DRD/caffeinput/size256/model_minimal/model"
+snapshot: 100
+snapshot_prefix: "/storage/hpc_anna/Kaggle_DRD/sample_caffeinput/size256/model_minimal/model"
 solver_mode: GPU
