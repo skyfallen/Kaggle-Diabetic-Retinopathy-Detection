@@ -264,14 +264,25 @@ layer {
   }
 }
 
-# First hidden layer
-layer {
-  name: "fc1"
-  type: "InnerProduct"
+# Concatenating feature extraction layers
+layers {
+  name: "concat"
   bottom: "norm1"
   bottom: "norm2"
   bottom: "norm3"
   bottom: "norm4"
+  top: "concat"
+  type: CONCAT
+  concat_param {
+    concat_dim: 1
+  }
+}
+
+# First hidden layer
+layer {
+  name: "fc1"
+  type: "InnerProduct"
+  bottom: "concat"
   top: "fc1"
   param {
     lr_mult: 1
