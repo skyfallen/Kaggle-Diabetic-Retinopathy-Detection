@@ -60,7 +60,7 @@ rm -rf $CAFFEINPUT/$PREPROC/ilsvrc12_*
 
 echo "Creating train lmdb..."
 
-GLOG_logtostderr=1 $TOOLS/convert_imageset \
+GLOG_logtostderr=1 srun --partition=gpu --gres=gpu:1 --constraint=K20 --mem=10000 $TOOLS/convert_imageset \
     --resize_height=$RESIZE_HEIGHT \
     --resize_width=$RESIZE_WIDTH \
     --shuffle \
@@ -70,22 +70,24 @@ GLOG_logtostderr=1 $TOOLS/convert_imageset \
 
 echo "Creating val lmdb..."
 
-GLOG_logtostderr=1 $TOOLS/convert_imageset \
+GLOG_logtostderr=1 srun --partition=gpu --gres=gpu:1 --constraint=K20 --mem=10000 $TOOLS/convert_imageset \
     --resize_height=$RESIZE_HEIGHT \
     --resize_width=$RESIZE_WIDTH \
-    --shuffle \
     $VAL_DATA_ROOT/ \
     $CAFFEINPUT/val.txt \
     $CAFFEINPUT/$PREPROC/ilsvrc12_val_lmdb
 
 echo "Creating test lmdb..."
 
-GLOG_logtostderr=1 $TOOLS/convert_imageset \
+GLOG_logtostderr=1 srun --partition=gpu --gres=gpu:1 --constraint=K20 --mem=10000 $TOOLS/convert_imageset \
     --resize_height=$RESIZE_HEIGHT \
     --resize_width=$RESIZE_WIDTH \
     $TEST_DATA_ROOT/ \
     $CAFFEINPUT/test.txt \
     $CAFFEINPUT/$PREPROC/ilsvrc12_test_lmdb
+
+echo "Sleeping..."
+sleep 60
 
 chmod -R 777 $CAFFEINPUT/$PREPROC/ilsvrc12_*
 
