@@ -271,7 +271,7 @@ layers {
   bottom: "norm2"
   bottom: "norm3"
   bottom: "norm4"
-  top: "concat"
+  top: "out"
   type: CONCAT
   concat_param {
     concat_dim: 1
@@ -282,7 +282,7 @@ layers {
 layer {
   name: "fc1"
   type: "InnerProduct"
-  bottom: "concat"
+  bottom: "out"
   top: "fc1"
   param {
     lr_mult: 1
