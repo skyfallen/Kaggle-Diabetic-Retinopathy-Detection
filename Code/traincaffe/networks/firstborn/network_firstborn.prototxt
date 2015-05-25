@@ -265,14 +265,14 @@ layer {
 }
 
 # Concatenating feature extraction layers
-layers {
+layer {
   name: "concat"
+  type: "Concat"
   bottom: "norm1"
   bottom: "norm2"
   bottom: "norm3"
   bottom: "norm4"
   top: "out"
-  type: CONCAT
   concat_param {
     concat_dim: 1
   }
