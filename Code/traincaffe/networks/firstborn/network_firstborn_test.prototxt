@@ -92,7 +92,38 @@ layer {
     beta: 0.75
   }
 }
-
+# Hidden layer for the first convolutional layer
+layer {
+  name: "conv1_ip"
+  type: "InnerProduct"
+  bottom: "norm1"
+  top: "conv1_ip"
+  param {
+    lr_mult: 1
+    decay_mult: 1
+  }
+  param {
+    lr_mult: 2
+    decay_mult: 0
+  }
+  inner_product_param {
+    num_output: 100
+    weight_filler {
+      type: "gaussian"
+      std: 0.005
+    }
+    bias_filler {
+      type: "constant"
+      value: 1
+    }
+  }
+}
+layer {
+  name: "relu2"
+  type: "ReLU"
+  bottom: "conv1_ip"
+  top: "conv1_ip"
+}
 # Convolutional layer for blood vesels
 layer {
   name: "conv2"
@@ -122,7 +153,7 @@ layer {
   }
 }
 layer {
-  name: "relu2"
+  name: "relu3"
   type: "ReLU"
   bottom: "conv2"
   top: "conv2"
@@ -148,6 +179,38 @@ layer {
     alpha: 0.0001
     beta: 0.75
   }
+}
+# Hidden layer for the second convolutional layer
+layer {
+  name: "conv2_ip"
+  type: "InnerProduct"
+  bottom: "norm2"
+  top: "conv2_ip"
+  param {
+    lr_mult: 1
+    decay_mult: 1
+  }
+  param {
+    lr_mult: 2
+    decay_mult: 0
+  }
+  inner_product_param {
+    num_output: 100
+    weight_filler {
+      type: "gaussian"
+      std: 0.005
+    }
+    bias_filler {
+      type: "constant"
+      value: 1
+    }
+  }
+}
+layer {
+  name: "relu4"
+  type: "ReLU"
+  bottom: "conv2_ip"
+  top: "conv2_ip"
 }
 
 # Convolutional layer for wool spots
@@ -179,7 +242,7 @@ layer {
   }
 }
 layer {
-  name: "relu3"
+  name: "relu5"
   type: "ReLU"
   bottom: "conv3"
   top: "conv3"
@@ -205,6 +268,38 @@ layer {
     alpha: 0.0001
     beta: 0.75
   }
+}
+# Hidden layer for the third convolutional layer
+layer {
+  name: "conv3_ip"
+  type: "InnerProduct"
+  bottom: "norm3"
+  top: "conv3_ip"
+  param {
+    lr_mult: 1
+    decay_mult: 1
+  }
+  param {
+    lr_mult: 2
+    decay_mult: 0
+  }
+  inner_product_param {
+    num_output: 100
+    weight_filler {
+      type: "gaussian"
+      std: 0.005
+    }
+    bias_filler {
+      type: "constant"
+      value: 1
+    }
+  }
+}
+layer {
+  name: "relu6"
+  type: "ReLU"
+  bottom: "conv3_ip"
+  top: "conv3_ip"
 }
 
 # Convolutional layer for large artifacts
@@ -236,7 +331,7 @@ layer {
   }
 }
 layer {
-  name: "relu4"
+  name: "relu7"
   type: "ReLU"
   bottom: "conv4"
   top: "conv4"
@@ -263,15 +358,58 @@ layer {
     beta: 0.75
   }
 }
+# Hidden layer for the fourth convolutional layer
+layer {
+  name: "conv4_ip"
+  type: "InnerProduct"
+  bottom: "norm4"
+  top: "conv4_ip"
+  param {
+    lr_mult: 1
+    decay_mult: 1
+  }
+  param {
+    lr_mult: 2
+    decay_mult: 0
+  }
+  inner_product_param {
+    num_output: 100
+    weight_filler {
+      type: "gaussian"
+      std: 0.005
+    }
+    bias_filler {
+      type: "constant"
+      value: 1
+    }
+  }
+}
+layer {
+  name: "relu8"
+  type: "ReLU"
+  bottom: "conv4_ip"
+  top: "conv4_ip"
+}
+
+# Concatenating feature extraction layers
+layer {
+  name: "concat"
+  type: "Concat"
+  bottom: "conv1_ip"
+  bottom: "conv2_ip"
+  bottom: "conv3_ip"
+  bottom: "conv4_ip"
+  top: "out"
+  concat_param {
+    concat_dim: 1
+  }
+}
 
 # First hidden layer
 layer {
   name: "fc1"
   type: "InnerProduct"
-  bottom: "norm1"
-  bottom: "norm2"
-  bottom: "norm3"
-  bottom: "norm4"
+  bottom: "out"
   top: "fc1"
   param {
     lr_mult: 1
@@ -294,7 +432,7 @@ layer {
   }
 }
 layer {
-  name: "relu5"
+  name: "relu9"
   type: "ReLU"
   bottom: "fc1"
   top: "fc1"
@@ -336,7 +474,7 @@ layer {
   }
 }
 layer {
-  name: "relu6"
+  name: "relu10"
   type: "ReLU"
   bottom: "fc2"
   top: "fc2"
@@ -378,7 +516,7 @@ layer {
   }
 }
 layer {
-  name: "relu7"
+  name: "relu11"
   type: "ReLU"
   bottom: "fc3"
   top: "fc3"
