@@ -439,15 +439,6 @@ layer {
   bottom: "fc1"
   top: "fc1"
 }
-layer {
-  name: "drop1"
-  type: "Dropout"
-  bottom: "fc1"
-  top: "fc1"
-  dropout_param {
-    dropout_ratio: 0.5
-  }
-}
 
 # Second hidden layer
 layer {
@@ -481,15 +472,6 @@ layer {
   bottom: "fc2"
   top: "fc2"
 }
-layer {
-  name: "drop2"
-  type: "Dropout"
-  bottom: "fc2"
-  top: "fc2"
-  dropout_param {
-    dropout_ratio: 0.5
-  }
-}
 
 # Third hidden layer
 layer {
@@ -522,15 +504,6 @@ layer {
   type: "ReLU"
   bottom: "fc3"
   top: "fc3"
-}
-layer {
-  name: "drop3"
-  type: "Dropout"
-  bottom: "fc3"
-  top: "fc3"
-  dropout_param {
-    dropout_ratio: 0.5
-  }
 }
 
 layer {
