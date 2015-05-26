@@ -14,7 +14,7 @@ layer {
   }
   data_param {
     source: "/storage/hpc_anna/Kaggle_DRD/caffeinput/size256/ilsvrc12_train_lmdb"
-    batch_size: 10
+    batch_size: 128
     backend: LMDB
   }
 }
@@ -33,7 +33,7 @@ layer {
   }
   data_param {
     source: "/storage/hpc_anna/Kaggle_DRD/caffeinput/size256/ilsvrc12_val_lmdb"
-    batch_size: 10
+    batch_size: 128
     backend: LMDB
   }
 }
