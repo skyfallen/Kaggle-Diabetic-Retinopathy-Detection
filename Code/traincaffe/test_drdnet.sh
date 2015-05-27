@@ -10,10 +10,11 @@
 PREFIX=$1
 PREPROC=$2
 MODELNAME=$3
-SUBSET=$4
-NSAMPLES=$5
+NITER=$4
+SUBSET=$5
+NSAMPLES=$6
 
-echo "Running with PREFIX="$PREFIX" PREPROC="$PREPROC" MODELNAME="$MODELNAME" SUBSET="$SUBSET" and NSAMPLES="$NSAMPLES
+echo "Running with PREFIX="$PREFIX" PREPROC="$PREPROC" MODELNAME="$MODELNAME" NITER="$NITER" SUBSET="$SUBSET" and NSAMPLES="$NSAMPLES
 read -n1 -r -p "Is it OK? (any key if yes, ^C if no)" key
 
 # remove previous results
@@ -21,7 +22,7 @@ rm -rf "/storage/hpc_anna/Kaggle_DRD/"$PREFIX"features/"$PREPROC"/features_"$MOD
 
 # extract
 srun --partition=gpu --gres=gpu:1 --constraint=K20 --mem=10000 \
-$HOME"/Software/Caffe/build/tools/extract_features.bin" "/storage/hpc_anna/Kaggle_DRD/"$PREFIX"caffeinput/"$PREPROC"/model_"$MODELNAME"/model_iter_1000000.caffemodel" \
+$HOME"/Software/Caffe/build/tools/extract_features.bin" "/storage/hpc_anna/Kaggle_DRD/"$PREFIX"caffeinput/"$PREPROC"/model_"$MODELNAME"/model_iter_"$NITER".caffemodel" \
 "/home/hpc_anna1985/Kaggle/Diabetic-Retinopathy-Detection/Code/traincaffe/networks/"$MODELNAME"/network_"$MODELNAME"_"$SUBSET".prototxt" \
 prob \
 "/storage/hpc_anna/Kaggle_DRD/"$PREFIX"features/"$PREPROC"/features_"$MODELNAME"_"$SUBSET $NSAMPLES lmdb GPU 0
