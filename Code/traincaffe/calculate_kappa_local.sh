@@ -18,5 +18,4 @@ sort "/storage/hpc_anna/Kaggle_DRD/"$PREFIX"caffeinput/"$SUBSET".txt" | gawk '{p
 sort "/storage/hpc_anna/Kaggle_DRD/"$PREFIX"predictions/"$PREPROC"/predictions_"$MODELNAME"_"$SUBSET".txt" | gawk '{print $2}' > "/tmp/"$USER"_sorted_predicted.txt"
 paste -d\  "/tmp/"$USER"_sorted_actual.txt" "/tmp/"$USER"_sorted_predicted.txt" > "/tmp/"$USER"_actual_and_predicted_labels.txt"
 
-source ~/Python/bin/activate
-python $HOME/Kaggle/Diabetic-Retinopathy-Detection/Code/traincaffe/kappa.py -s "/tmp/"$USER"_actual_and_predicted_labels.txt"
+python $HOME/Kaggle/Diabetic-Retinopathy-Detection/Code/traincaffe/kappa.py -s "/tmp/"$USER"_actual_and_predicted_labels.txt" 
