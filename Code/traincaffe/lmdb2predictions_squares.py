@@ -27,7 +27,7 @@ with env.begin() as txn:
     with txn.cursor() as curs:
         for key, value in curs:
 
-            # print key
+            #print key
 
             # convert value to numpy array
             datum = caffe.proto.caffe_pb2.Datum()
@@ -36,12 +36,12 @@ with env.begin() as txn:
 
             # lazily initialize matrix, once we know number of features
             if data is None:
-                num_features = arr.shape[0]
+                num_features = arr.shape[1]
                 print "Number of features: ", num_features
                 data = np.empty((num_images, num_features))
 
             # copy data to matrix
-            data[int(key), ] = arr[:, 0, 0]
+            data[int(key), ] = arr[0, :, 0]
 
 env.close()
 

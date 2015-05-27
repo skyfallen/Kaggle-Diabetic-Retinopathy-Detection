@@ -21,10 +21,10 @@ read -n1 -r -p "Is it OK? (any key if yes, ^C if no)" key
 rm -rf "/storage/hpc_kuz/squares/"$PREFIX"features/"$PREPROC"/features_"$MODELNAME"_"$SUBSET
 
 # extract
-$HOME"/Software/Caffe/build/tools/extract_features.bin" "/storage/hpc_kuz/squares/"$PREFIX"caffeinput/"$PREPROC"/model_"$MODELNAME"/model_iter_100000.caffemodel" \
+$HOME"/Software/Caffe/build/tools/extract_features.bin" "/storage/hpc_kuz/squares/"$PREFIX"caffeinput/"$PREPROC"/model_"$MODELNAME"/model_iter_"$NITER".caffemodel" \
 $HOME"/Kaggle/Diabetic-Retinopathy-Detection/Code/traincaffe/networks/"$MODELNAME"/network_"$MODELNAME"_"$SUBSET".prototxt" \
 prob \
-"/storage/hpc_kuz/squares/"$PREFIX"features/"$PREPROC"/features_"$MODELNAME"_"$SUBSET $NSAMPLES lmdb GPU 0
+"/storage/"$USER"/squares/"$PREFIX"features/"$PREPROC"/features_"$MODELNAME"_"$SUBSET $NSAMPLES lmdb GPU 0
 
 # change permissions to the extracted features
 chmod -R 777 "/storage/hpc_kuz/squares/"$PREFIX"features/"$PREPROC"/features_"$MODELNAME"_"$SUBSET
