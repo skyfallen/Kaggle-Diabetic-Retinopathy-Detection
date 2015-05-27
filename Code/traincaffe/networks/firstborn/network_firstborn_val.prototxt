@@ -527,9 +527,9 @@ layer {
   }
 }
 layer {
-  name: "loss"
-  type: "SoftmaxWithLoss"
+  name: "prob"
+  type: "Softmax"
   bottom: "fc3"
-  bottom: "label"
-  top: "loss"
+  top: "prob"
 }
+
