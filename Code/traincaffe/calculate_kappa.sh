@@ -14,7 +14,7 @@ SUBSET=$4
 
 echo "Running with PREFIX="$PREFIX" PREPROC="$PREPROC" MODELNAME="$MODELNAME" SUBSET="$SUBSET
 read -n1 -r -p "Is it OK? (any key if yes, ^C if no)" key 
-sort "/storage/hpc_anna/Kaggle_DRD/"$PREFIX"caffeinput/"$SUBSET".txt" | gawk '{print $2}' > "/tmp/"$USER"_sorted_actual.txt"
+sort "/storage/hpc_anna/Kaggle_DRD/"$PREFIX"caffeinput/"$PREPROC"/"$SUBSET".txt" | gawk '{print $2}' > "/tmp/"$USER"_sorted_actual.txt"
 sort "/storage/hpc_anna/Kaggle_DRD/"$PREFIX"predictions/"$PREPROC"/predictions_"$MODELNAME"_"$SUBSET".txt" | gawk '{print $2}' > "/tmp/"$USER"_sorted_predicted.txt"
 paste -d\  "/tmp/"$USER"_sorted_actual.txt" "/tmp/"$USER"_sorted_predicted.txt" > "/tmp/"$USER"_actual_and_predicted_labels.txt"
 

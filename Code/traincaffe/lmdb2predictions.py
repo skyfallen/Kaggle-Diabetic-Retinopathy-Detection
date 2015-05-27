@@ -17,7 +17,7 @@ preprocessing_type = sys.argv[2]
 model_name = sys.argv[3]
 subset = sys.argv[4]
 features_lmdb_path = '/storage/hpc_anna/Kaggle_DRD/' + prefix + 'features/' + preprocessing_type + '/features_' + model_name + '_' + subset
-predictions_in_file = '/storage/hpc_anna/Kaggle_DRD/' + prefix + 'caffeinput/' + subset + '.txt'
+predictions_in_file = '/storage/hpc_anna/Kaggle_DRD/' + prefix + 'caffeinput/' + preprocessing_type + '/' + subset + '.txt'
 predictions_out_file = '/storage/hpc_anna/Kaggle_DRD/' + prefix +  'predictions/' + preprocessing_type + '/predictions_' + model_name + '_' + subset + '.txt'
 
 env = lmdb.open(features_lmdb_path)
