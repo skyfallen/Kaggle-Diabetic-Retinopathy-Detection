@@ -269,6 +269,7 @@ layer {
     beta: 0.75
   }
 }
+
 # Hidden layer for the third convolutional layer
 layer {
   name: "conv3_ip"
@@ -358,6 +359,7 @@ layer {
     beta: 0.75
   }
 }
+
 # Hidden layer for the fourth convolutional layer
 layer {
   name: "conv4_ip"
@@ -505,18 +507,29 @@ layer {
 }
 
 layer {
-  name: "accuracy"
+  name: "accuracy_TEST"
   type: "Accuracy"
   bottom: "fc3"
   bottom: "label"
-  top: "accuracy"
+  top: "accuracy_TEST"
   include {
     phase: TEST
   }
 }
 layer {
-  name: "prob"
-  type: "Softmax"
+  name: "accuracy_TRAIN"
+  type: "Accuracy"
   bottom: "fc3"
-  top: "prob"
+  bottom: "label"
+  top: "accuracy_TRAIN"
+  include {
+    phase: TRAIN
+  }
+}
+layer {
+  name: "loss"
+  type: "SoftmaxWithLoss"
+  bottom: "fc3"
+  bottom: "label"
+  top: "loss"
 }
