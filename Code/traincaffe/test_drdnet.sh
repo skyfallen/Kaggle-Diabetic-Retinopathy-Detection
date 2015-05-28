@@ -43,3 +43,60 @@ else
 	python $HOME/Kaggle/Diabetic-Retinopathy-Detection/Code/traincaffe/lmdb2predictions.py $PREFIX $PREPROC $MODELNAME $SUBSET
 fi
 chmod 777 "/storage/hpc_anna/Kaggle_DRD/"$PREFIX"predictions/"$PREPROC"/predictions_"$MODELNAME"_"$SUBSET".txt"
+
+# ask user whether he wants to store this result as a Kaggle submission
+if [ "$SUBSET" == "test" ]; then
+	echo -n "Would you like to store a submission for Kaggle (type 'yes'): "
+	read storesubmission
+
+	# store the model and convert predictions to kaggle model
+	if [ "$storesubmission" == "yes" ]; then
+		
+		# create backup folder
+		curdate=$(date +%Y-%m-%d-%H-%M)
+		mkdir "/storage/hpc_anna/Kaggle_DRD/"$PREFIX"submissions/"$PREPROC
+		mkdir "/storage/hpc_anna/Kaggle_DRD/"$PREFIX"submissions/"$PREPROC"/"$MODELNAME
+		storeto="/storage/hpc_anna/Kaggle_DRD/"$PREFIX"submissions/"$PREPROC"/"$MODELNAME"/"$curdate
+		mkdir $storeto
+		
+		# copy model files
+		cp "/storage/hpc_anna/Kaggle_DRD/"$PREFIX"caffeinput/"$PREPROC"/model_"$MODELNAME"/model_iter_"$NITER".caffemodel" $storeto
+		cp "/storage/hpc_anna/Kaggle_DRD/"$PREFIX"caffeinput/"$PREPROC"/model_"$MODELNAME"/model_iter_"$NITER".solverstate" $storeto
+
+		# convert predictions to Kaggle-acceptable format
+		outfile="/storage/hpc_anna/Kaggle_DRD/"$PREFIX"submissions/"$PREPROC"/"$MODELNAME"/"$curdate"/submission_"$PREPROC"_"$MODELNAME".csv"
+		echo "image,level" > $outfile
+		cat "/storage/hpc_anna/Kaggle_DRD/predictions/"$PREPROC"/predictions_"$MODELNAME"_test.txt" | sed 's/ /,/g' | sed 's/.jpg//g' >> $outfile
+
+		# give rights to submissions folder
+		chmod -R 777 $storeto
+
+		# write down what was stored
+		nsub=$(cat $HOME"/Kaggle/Diabetic-Retinopathy-Detection/README.md" | wc -l)
+		let "nsub -= 1"
+		echo "|"$nsub"|"$storeto"|"$kappa"|||" >> $HOME"/Kaggle/Diabetic-Retinopathy-Detection/README.md"
+	fi
+else
+	# calculate Kappa
+	echo 'Calculating Kappa ...'
+	if [ "$PREFIX" == "" ]; then
+        	kappa=`$HOME"/Kaggle/Diabetic-Retinopathy-Detection/Code/traincaffe/calculate_kappa.sh" EMPTY $PREPROC $MODELNAME $SUBSET NOCONFIRM`
+	else
+        	kappa=`$HOME"/Kaggle/Diabetic-Retinopathy-Detection/Code/traincaffe/calculate_kappa.sh" $PREFIX $PREPROC $MODELNAME $SUBSET NOCONFIRM`
+	fi
+	echo "k = "$kappa
+fi
+
+
+
+
+
+
+
+
+
+
+
+
+
+
