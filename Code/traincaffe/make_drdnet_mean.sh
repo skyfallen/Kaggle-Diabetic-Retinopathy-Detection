@@ -2,8 +2,8 @@
 # Compute the mean image from the Kaggle_DRD training lmdb
 # N.B. this is available in data/ilsvrc12
 #
-# Usage: ./create_drdnet.sh PREFIX PREPROC
-# Example: ./create_drdnet.sh "" size256
+# Usage: ./make_drdnet_mean.sh PREFIX PREPROC
+# Example: ./make_drdnet_mean.sh "" size256
 #
 
 PREFIX=$1

@@ -65,7 +65,7 @@ GLOG_logtostderr=1 srun --partition=gpu --gres=gpu:1 --constraint=K20 --mem=1000
     --resize_width=$RESIZE_WIDTH \
     --shuffle \
     $TRAIN_DATA_ROOT/ \
-    $CAFFEINPUT/train.txt \
+    $CAFFEINPUT/$PREPROC/train.txt \
     $CAFFEINPUT/$PREPROC/ilsvrc12_train_lmdb
 
 echo "Creating val lmdb..."
@@ -74,7 +74,7 @@ GLOG_logtostderr=1 srun --partition=gpu --gres=gpu:1 --constraint=K20 --mem=1000
     --resize_height=$RESIZE_HEIGHT \
     --resize_width=$RESIZE_WIDTH \
     $VAL_DATA_ROOT/ \
-    $CAFFEINPUT/val.txt \
+    $CAFFEINPUT/$PREPROC/val.txt \
     $CAFFEINPUT/$PREPROC/ilsvrc12_val_lmdb
 
 echo "Creating test lmdb..."
@@ -83,7 +83,7 @@ GLOG_logtostderr=1 srun --partition=gpu --gres=gpu:1 --constraint=K20 --mem=1000
     --resize_height=$RESIZE_HEIGHT \
     --resize_width=$RESIZE_WIDTH \
     $TEST_DATA_ROOT/ \
-    $CAFFEINPUT/test.txt \
+    $CAFFEINPUT/$PREPROC/test.txt \
     $CAFFEINPUT/$PREPROC/ilsvrc12_test_lmdb
 
 echo "Sleeping..."
