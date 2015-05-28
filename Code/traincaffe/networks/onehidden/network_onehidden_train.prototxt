@@ -13,7 +13,7 @@ layer {
   }
   data_param {
     source: "/storage/hpc_anna/Kaggle_DRD/caffeinput/THIS_SHOULD_BE_IGNORED"
-    batch_size: 10
+    batch_size: 128
     backend: LMDB
   }
 }
