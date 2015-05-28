@@ -16,13 +16,13 @@ read -n1 -r -p "Is it OK? (any key if yes, ^C if no)" key
 
 cd "/storage/hpc_anna/Kaggle_DRD/"$PREFIX"images/"$PREPROC"/"$SUBSET
 if [ "$SUBSET" != "test" ]; then
-	ls * | sed 's/^/\^/g' > "/tmp/temp_"$SUBSET"_labels.txt"
-	touch "/storage/hpc_anna/Kaggle_DRD/"$PREFIX"caffeinput/"$SUBSET".txt"
+	find . -name '*.jpg'| sed 's/^\.\//\^/g' > "/tmp/temp_"$SUBSET"_labels.txt"
+	touch "/storage/hpc_anna/Kaggle_DRD/"$PREFIX"caffeinput/"$PREPROC"/"$SUBSET".txt"
 	while read line
 	do
-		grep -e $line "/storage/hpc_anna/Kaggle_DRD/"$PREFIX"caffeinput/trainCaffeLables.csv" >> "/storage/hpc_anna/Kaggle_DRD/"$PREFIX"caffeinput/"$SUBSET".txt"
+		grep -e $line "/storage/hpc_anna/Kaggle_DRD/"$PREFIX"caffeinput/trainCaffeLabels.csv" >> "/storage/hpc_anna/Kaggle_DRD/"$PREFIX"caffeinput/"$PREPROC"/"$SUBSET".txt"
 	done < "/tmp/temp_"$SUBSET"_labels.txt"
 	rm "/tmp/temp_"$SUBSET"_labels.txt"
 else
-	ls * | sed 's/$/ 0/' > "/storage/hpc_anna/Kaggle_DRD/"$PREFIX"caffeinput/test.txt"
+	find . -name '*.jpg' | sed 's/^\.\///g' | sed 's/$/ 0/' > "/storage/hpc_anna/Kaggle_DRD/"$PREFIX"caffeinput/"$PREPROC"/test.txt"
 fi
