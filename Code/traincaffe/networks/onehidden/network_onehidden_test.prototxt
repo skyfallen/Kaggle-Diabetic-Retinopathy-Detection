@@ -124,7 +124,7 @@ layer {
 layer {
   name: "accuracy"
   type: "Accuracy"
-  bottom: "fc1"
+  bottom: "fc2"
   bottom: "label"
   top: "accuracy"
   include {
@@ -134,6 +134,6 @@ layer {
 layer {
   name: "prob"
   type: "Softmax"
-  bottom: "fc1"
+  bottom: "fc2"
   top: "prob"
 }
