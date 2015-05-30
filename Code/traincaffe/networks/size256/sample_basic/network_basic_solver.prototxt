@@ -1,4 +1,4 @@
-net: "/home/hpc_kuz/Kaggle/Diabetic-Retinopathy-Detection/Code/traincaffe/networks/network_basic.prototxt"
+net: "/home/hpc_kuz/Kaggle/Diabetic-Retinopathy-Detection/Code/traincaffe/networks/size256/sample_basic/network_basic.prototxt"
 test_iter: 100
 test_interval: 20
 base_lr: 0.01

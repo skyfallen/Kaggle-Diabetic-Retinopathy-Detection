@@ -1,4 +1,4 @@
-net: "/home/hpc_dmytro/Kaggle/Diabetic-Retinopathy-Detection/Code/traincaffe/networks/firstborn/network_firstborn.prototxt"
+net: "/home/hpc_dmytro/Kaggle/Diabetic-Retinopathy-Detection/Code/traincaffe/networks/size256/firstborn/network_firstborn.prototxt"
 test_iter: 100
 test_interval: 1000
 base_lr: 0.01

@@ -1,12 +1,12 @@
-net: "/home/hpc_kuz/Kaggle/Diabetic-Retinopathy-Detection/Code/traincaffe/networks/onehidden/network_onehidden.prototxt"
+net: "/home/hpc_kuz/Kaggle/Diabetic-Retinopathy-Detection/Code/traincaffe/networks/size256/onehidden/network_onehidden.prototxt"
 test_iter: 100
-test_interval: 1000
-base_lr: 0.0000001
+test_interval: 100
+base_lr: 0.000001
 lr_policy: "fixed"
-display: 1000
+display: 100
 max_iter: 1000000
 momentum: 0.9
 #weight_decay: 0.0005
-snapshot: 10000
+snapshot: 1000
 snapshot_prefix: "/storage/hpc_anna/Kaggle_DRD/caffeinput/size256/model_onehidden/model"
 solver_mode: GPU
