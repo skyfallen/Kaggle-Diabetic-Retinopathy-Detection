@@ -40,14 +40,18 @@ Testing parameters are given in `Code/traincaffe/networks/MODELNAME/network_MODE
 * In `data` layer for `TEST` phase set `data_param -> source` to point at `caffeinput/PREPROC/ilsvrc12_test_lmdb`  
 
 #### Train the model
-Training should be started from Caffe root directory as follows:  
 ```
-srun --partition=gpu --gres=gpu:1 --constraint=K20 --mem=10000 ./build/tools/caffe train --solver=/home/$USER/Kaggle/Diabetic-Retinopathy-Detection/Code/traincaffe/networks/MODELNAME/network_MODELNAME_solver.prototxt
+./train_drdnet.sh PREFIX PREPROC MODELNAME
 ```
 
 #### Apply model to test images
 For some reason there is no convinient way to just apply model to new data. We use `extract_features.bin` scripts to extract activations of the last layer (`prob`).  
 After that we extract classes from LMDB base.  
-To perform these steps run `Code/traincaffe/test_drdnet.sh`.  
+To perform these steps run 
+```
+Code/traincaffe/test_drdnet.sh` PREFIX PREPROC MODELNAME NITER SUBSET  
+```
+where NITER is number of iterations of the given model you aim to use for classifying testset with.
+
 Results will be stored to `/storage/hpc_anna/Kaggle_DRD/PREFIXpredictions/PREPROC/predictions_MODELNAME.txt`
 
