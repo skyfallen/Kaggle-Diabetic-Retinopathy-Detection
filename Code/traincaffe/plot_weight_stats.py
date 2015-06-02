@@ -9,6 +9,7 @@ import caffe
 import numpy as np
 import re
 import matplotlib.pyplot as plt
+from datetime import datetime
 
 np.set_printoptions(linewidth=180)
 
@@ -27,6 +28,30 @@ class suppress_stdout_stderr(object):
         os.dup2(self.save_fds[1],2)
         os.close(self.null_fds[0])
         os.close(self.null_fds[1])
+
+#wrapper for weight visualizations
+# our network takes BGR images, so we need to switch color channels
+def showimage(im, path):
+    if im.ndim == 3:
+        im = im[:, :, ::-1]
+    plt.imsave(path, im)
+    
+# take an array of shape (n, height, width) or (n, height, width, channels)
+#  and visualize each (height, width) thing in a grid of size approx. sqrt(n) by sqrt(n)
+def vis_square(data, path, padsize=1, padval=0):
+    data -= data.min()
+    data /= data.max()
+    
+    # force the number of filters to be square
+    n = int(np.ceil(np.sqrt(data.shape[0])))
+    padding = ((0, n ** 2 - data.shape[0]), (0, padsize), (0, padsize)) + ((0, 0),) * (data.ndim - 3)
+    data = np.pad(data, padding, mode='constant', constant_values=(padval, padval))
+    
+    # tile the filters into an image
+    data = data.reshape((n, n) + data.shape[1:]).transpose((0, 2, 1, 3) + tuple(range(4, data.ndim + 1)))
+    data = data.reshape((n * data.shape[1], n * data.shape[3]) + data.shape[4:])
+    
+    showimage(data, path)
 
 # check number of command line arguments
 if len(sys.argv) < 3:
@@ -49,7 +74,7 @@ path_to_model = '/storage/hpc_anna/Kaggle_DRD/' + prefix + 'caffeinput/' + prepr
 files = os.listdir(path_to_model)
 files = filter(lambda x: re.search(r'caffemodel', x), files)
 snapshots_names = list()
-for file in files:
+for file in files[0:4]:
   snapshots_names.append(int(file.split('_')[2].split('.')[0]))
 
 # load the first model
@@ -85,13 +110,16 @@ net_stats = np.hstack((net_stats_ratios, net_stats_weight_means, net_stats_weigh
 user = os.environ['USER']
 date = datetime.now()
 date = date.strftime('%Y-%m-%d-%H-%M')
+path_to_plot = '/home/' + user + '/Kaggle/Diabetic-Retinopathy-Detection/Code/traincaffe/networks/' + preprocessing_type + '/' + prefix + model_name + '/plots/' + date + '_feature_squares.png'
+
+vis_square(net_curr.params['conv1'][0].data.transpose(0, 2, 3, 1), path_to_plot)
 
 line_objects_ratios = plt.plot(net_stats[:, 0:len(layer_names)])
 plt.legend(line_objects_ratios, layer_names, loc="upper left")
 plt.xlabel('snapshots')
 plt.ylabel('ratio of weights')
 plt.grid(True)
-plt.savefig('/home/' + user + '/Kaggle/Diabetic-Retinopathy-Detection/Code/traincaffe/networks/' + preprocessing_type + '/' + prefix + model_name + '/plots/' + date + '_weight_ratios.png') 
+plt.savefig('/home/' + user + '/Kaggle/Diabetic-Retinopathy-Detection/Code/traincaffe/networks/' + preprocessing_type + '/' + prefix + model_name + '/plots/' + date + '_weight_ratios.png')
 plt.show()
 plt.clf()
 
@@ -100,7 +128,7 @@ plt.legend(line_objects_means, layer_names, loc="upper left")
 plt.xlabel('snapshots')
 plt.ylabel('mean of weights')
 plt.grid(True)
-plt.savefig('/home/' + user + '/Kaggle/Diabetic-Retinopathy-Detection/Code/traincaffe/networks/' + preprocessing_type + '/' + prefix + model_name + '/plots/' + date + '_mean_weights.png') 
+plt.savefig('/home/' + user + '/Kaggle/Diabetic-Retinopathy-Detection/Code/traincaffe/networks/' + preprocessing_type + '/' + prefix + model_name + '/plots/' + date + '_mean_weights.png')
 plt.show()
 plt.clf()
 
@@ -109,7 +137,7 @@ plt.legend(line_objects_stds, layer_names, loc="upper left")
 plt.xlabel('snapshots')
 plt.ylabel('stds of weights')
 plt.grid(True)
-plt.savefig('/home/' + user + '/Kaggle/Diabetic-Retinopathy-Detection/Code/traincaffe/networks/' + preprocessing_type + '/' + prefix + model_name + '/plots/' + date + 'stds_weights.png') 
+plt.savefig('/home/' + user + '/Kaggle/Diabetic-Retinopathy-Detection/Code/traincaffe/networks/' + preprocessing_type + '/' + prefix + model_name + '/plots/' + date + '_stds_weights.png')
 plt.show()
 plt.clf()
 
