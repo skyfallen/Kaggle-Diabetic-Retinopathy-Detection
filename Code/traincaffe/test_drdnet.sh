@@ -12,7 +12,7 @@ PREPROC=$2
 MODELNAME=$3
 NITER=$4
 SUBSET=$5
-NSAMPLES=$6
+NSAMPLES=$(ls "/storage/hpc_anna/Kaggle_DRD/"$PREFIX"images/"$PREPROC"/"$SUBSET"/" | wc -l)
 
 echo "Running with PREFIX="$PREFIX" PREPROC="$PREPROC" MODELNAME="$MODELNAME" NITER="$NITER" SUBSET="$SUBSET" and NSAMPLES="$NSAMPLES
 read -n1 -r -p "Is it OK? (any key if yes, ^C if no)" key
