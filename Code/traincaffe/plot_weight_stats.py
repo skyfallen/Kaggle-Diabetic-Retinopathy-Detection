@@ -148,7 +148,7 @@ plotstats(net_stats[:, 0:len(layer_names)], layer_names, 'ratio of weights', pre
 plotstats(net_stats[:, len(layer_names):2*len(layer_names)], layer_names, 'mean of weights', preprocessing_type, prefix, model_name, date + '_mean_weights.png')
 
 # standard deviation of weights
-plotstats(net_stats[:, 0:len(layer_names)], layer_names, 'stds of weights', preprocessing_type, prefix, model_name, date + '_stds_weights.png')
+plotstats(net_stats[:, 2*len(layer_names):3*len(layer_names)], layer_names, 'stds of weights', preprocessing_type, prefix, model_name, date + '_stds_weights.png')
 
 # source_params = {pr: (net.params[pr][0].data, net.params[pr][1].data) for pr in params}
 # print net.params['fc1'][0].data
