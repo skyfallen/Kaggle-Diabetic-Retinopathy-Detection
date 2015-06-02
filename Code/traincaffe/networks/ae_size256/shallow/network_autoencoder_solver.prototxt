@@ -1,19 +1,19 @@
-net: "examples/mnist/mnist_autoencoder.prototxt"
+net: “/home/hpc_anna1985/Kaggle/Diabetic-Retinopathy-Detection/Code/traincaffe/networks/ae_size256/shallow/network_autoencoder.prototxt”
 test_state: { stage: 'test-on-train' }
-test_iter: 500
+test_iter: 100
 test_state: { stage: 'test-on-test' }
 test_iter: 100
-test_interval: 500
+test_interval: 1000
 test_compute_loss: true
-base_lr: 0.01
+base_lr: 0.00001
 lr_policy: "step"
 gamma: 0.1
-stepsize: 10000
-display: 100
-max_iter: 65000
+stepsize: 100000
+display: 500
+max_iter: 1000000
 weight_decay: 0.0005
-snapshot: 10000
-snapshot_prefix: "examples/mnist/mnist_autoencoder"
+snapshot: 1000
+snapshot_prefix: "/storage/hpc_anna/Kaggle_DRD/caffeinput/ae_size256/model_shallow/model"
 momentum: 0.9
 # solver mode: CPU or GPU
 solver_mode: GPU
