@@ -529,7 +529,7 @@ layer {
 layer {
   name: "prob"
   type: "Softmax"
-  bottom: "fc1"
+  bottom: "fc3"
   top: "prob"
 }
 
