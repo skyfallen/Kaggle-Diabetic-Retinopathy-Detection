@@ -74,7 +74,7 @@ path_to_model = '/storage/hpc_anna/Kaggle_DRD/' + prefix + 'caffeinput/' + prepr
 files = os.listdir(path_to_model)
 files = filter(lambda x: re.search(r'caffemodel', x), files)
 snapshots_names = list()
-for file in files[0:4]:
+for file in files:
   snapshots_names.append(int(file.split('_')[2].split('.')[0]))
 
 # load the first model
@@ -98,7 +98,7 @@ for sid,snapshot_name in enumerate(snapshots_names):
   for lid,layer_name in enumerate(layer_names):
     weights_prev = net_prev.params[layer_name][0].data
     weights_curr = net_curr.params[layer_name][0].data
-    updates = np.abs(weights_curr - weights_prev)
+    updates = np.abs(weights_curr - weights_prev) / float(1000)
     ratio_weight_updates = updates / weights_prev.astype('float64')
 
     net_stats_ratios[sid, lid] = np.mean(ratio_weight_updates)

@@ -21,9 +21,11 @@ cat "/storage/hpc_anna/Kaggle_DRD/"$PREFIX"caffeinput/"$PREPROC"/model_"$MODELNA
 
 mkdir $HOME"/Kaggle/Diabetic-Retinopathy-Detection/Code/traincaffe/networks/"$PREPROC"/"$PREFIX$MODELNAME"/plots"
 if [ "$PREFIX" == "" ]; then
-	python $HOME"/Kaggle/Diabetic-Retinopathy-Detection/Code/traincaffe/plotaccloss.py" EMPTY $PREPROC $MODELNAME
+	python $HOME"/Kaggle/Diabetic-Retinopathy-Detection/Code/traincaffe/plot_accuracy_loss.py" EMPTY $PREPROC $MODELNAME
+	python $HOME"/Kaggle/Diabetic-Retinopathy-Detection/Code/traincaffe/plot_weight_stats.py" EMPTY $PREPROC $MODELNAME
 else
-	python $HOME"/Kaggle/Diabetic-Retinopathy-Detection/Code/traincaffe/plotaccloss.py" $PREFIX $PREPROC $MODELNAME
+	python $HOME"/Kaggle/Diabetic-Retinopathy-Detection/Code/traincaffe/plot_accuracy_loss.py" $PREFIX $PREPROC $MODELNAME
+	python $HOME"/Kaggle/Diabetic-Retinopathy-Detection/Code/traincaffe/plot_weight_stats.py" $PREFIX $PREPROC $MODELNAME
 fi
 
 # wait a bit and remove temp files
