@@ -1,5 +1,5 @@
-Network "Onehidden"
------------------
+Network "Onehidden" on size256
+------------------------------
 
 One convolutional and one hidden layer: In -> Conv -> FC -> Out  
 In this file we store model behaviour at different parameters
