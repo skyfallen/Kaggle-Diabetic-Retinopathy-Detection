@@ -3,8 +3,8 @@
 #
 # Extract network activations when run on test or validation data
 #
-# Usage: ./test_drdnet.sh PREFIX PREPROC MODELNAME SUBSET
-# Example: ./test_drdnet.sh "" size256 basic test
+# Usage: ./test_drdnet.sh PREFIX PREPROC MODELNAME SUBSET NSAMPLES
+# Example: ./test_drdnet.sh "" size256 basic test 107
 #
 
 PREFIX=$1
@@ -12,7 +12,7 @@ PREPROC=$2
 MODELNAME=$3
 NITER=$4
 SUBSET=$5
-NSAMPLES=$(ls "/storage/hpc_anna/Kaggle_DRD/"$PREFIX"images/"$PREPROC"/"$SUBSET"/" | wc -l)
+NSAMPLES=$6
 
 echo "Running with PREFIX="$PREFIX" PREPROC="$PREPROC" MODELNAME="$MODELNAME" NITER="$NITER" SUBSET="$SUBSET" and NSAMPLES="$NSAMPLES
 read -n1 -r -p "Is it OK? (any key if yes, ^C if no)" key
