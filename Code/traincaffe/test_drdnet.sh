@@ -21,7 +21,7 @@ read -n1 -r -p "Is it OK? (any key if yes, ^C if no)" key
 rm -rf "/storage/hpc_anna/Kaggle_DRD/"$PREFIX"features/"$PREPROC"/features_"$MODELNAME"_"$SUBSET
 
 # extract
-srun --partition=gpu --gres=gpu:1 --constraint=K20 --mem=16000 \
+srun --partition=gpu --gres=gpu:1 --constraint=K20 --mem=10000 \
 $HOME"/Software/Caffe/build/tools/extract_features.bin" "/storage/hpc_anna/Kaggle_DRD/"$PREFIX"caffeinput/"$PREPROC"/model_"$MODELNAME"/model_iter_"$NITER".caffemodel" \
 $HOME"/Kaggle/Diabetic-Retinopathy-Detection/Code/traincaffe/networks/"$PREPROC"/"$MODELNAME"/network_"$MODELNAME"_"$SUBSET".prototxt" \
 prob \
