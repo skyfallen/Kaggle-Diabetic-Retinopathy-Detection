@@ -107,39 +107,48 @@ for sid,snapshot_name in enumerate(snapshots_names):
 
 net_stats = np.hstack((net_stats_ratios, net_stats_weight_means, net_stats_weight_stds))
 
+# prepare env variables need for directory names etc
 user = os.environ['USER']
 date = datetime.now()
 date = date.strftime('%Y-%m-%d-%H-%M')
-path_to_plot = '/home/' + user + '/Kaggle/Diabetic-Retinopathy-Detection/Code/traincaffe/networks/' + preprocessing_type + '/' + prefix + model_name + '/plots/' + date + '_feature_squares.png'
 
+# visualize weight from each convolutional layer
+path_to_plot = '/home/' + user + '/Kaggle/Diabetic-Retinopathy-Detection/Code/traincaffe/networks/' + preprocessing_type + '/' + prefix + model_name + '/plots/' + date + '_feature_squares.png'
 vis_square(net_curr.params['conv1'][0].data.transpose(0, 2, 3, 1), path_to_plot)
 
-line_objects_ratios = plt.plot(net_stats[:, 0:len(layer_names)])
-plt.legend(line_objects_ratios, layer_names, loc="upper left")
-plt.xlabel('snapshots')
-plt.ylabel('ratio of weights')
-plt.grid(True)
-plt.savefig('/home/' + user + '/Kaggle/Diabetic-Retinopathy-Detection/Code/traincaffe/networks/' + preprocessing_type + '/' + prefix + model_name + '/plots/' + date + '_weight_ratios.png')
-plt.show()
-plt.clf()
+conv_layer_counter = 0
+for layer in net_curr.layers:
+    if layer.type == 'Convolution':
+	conv_layer_counter += 1
+        path_to_plot = '/home/' + user + '/Kaggle/Diabetic-Retinopathy-Detection/Code/traincaffe/networks/' + \
+                       preprocessing_type + '/' + prefix + model_name + '/plots/' + date + '_viz_conv' + str(conv_layer_counter) + '.png'
+	vis_square(layer.blobs[0].data.transpose(0, 2, 3, 1), path_to_plot)
 
-line_objects_means = plt.plot(net_stats[:, len(layer_names):2*len(layer_names)])
-plt.legend(line_objects_means, layer_names, loc="upper left")
-plt.xlabel('snapshots')
-plt.ylabel('mean of weights')
-plt.grid(True)
-plt.savefig('/home/' + user + '/Kaggle/Diabetic-Retinopathy-Detection/Code/traincaffe/networks/' + preprocessing_type + '/' + prefix + model_name + '/plots/' + date + '_mean_weights.png')
-plt.show()
-plt.clf()
+#net_curr.layers[2].blobs[0].data
+#net_curr.layers[5].type
 
-line_objects_stds = plt.plot(net_stats[:, 2*len(layer_names):3*len(layer_names)])
-plt.legend(line_objects_stds, layer_names, loc="upper left")
-plt.xlabel('snapshots')
-plt.ylabel('stds of weights')
-plt.grid(True)
-plt.savefig('/home/' + user + '/Kaggle/Diabetic-Retinopathy-Detection/Code/traincaffe/networks/' + preprocessing_type + '/' + prefix + model_name + '/plots/' + date + '_stds_weights.png')
-plt.show()
-plt.clf()
+# function to plot stats from all layers on one figure
+def plotstats(data, layer_names, ylabel, preprocessing_type, prefix, model_name, filename):
+    plt.clf()
+    line_objects = plt.plot(data)
+    plt.xlabel('snapshots')
+    plt.ylabel(ylabel)
+    plt.grid(True)
+    ax = plt.subplot(111)
+    box = ax.get_position()
+    ax.set_position([box.x0, box.y0, box.width*0.8, box.height])
+    plt.legend(line_objects, layer_names, loc='center left', bbox_to_anchor=(1, 0.5))
+    plt.savefig('/home/' + user + '/Kaggle/Diabetic-Retinopathy-Detection/Code/traincaffe/networks/' + preprocessing_type + '/' + prefix + model_name + '/plots/' + filename)
+    plt.show()
+
+# plot weights ratio
+plotstats(net_stats[:, 0:len(layer_names)], layer_names, 'ratio of weights', preprocessing_type, prefix, model_name, date + '_weight_ratios.png')
+
+# plot mean of weights
+plotstats(net_stats[:, len(layer_names):2*len(layer_names)], layer_names, 'mean of weights', preprocessing_type, prefix, model_name, date + '_mean_weights.png')
+
+# standard deviation of weights
+plotstats(net_stats[:, 0:len(layer_names)], layer_names, 'stds of weights', preprocessing_type, prefix, model_name, date + '_stds_weights.png')
 
 # source_params = {pr: (net.params[pr][0].data, net.params[pr][1].data) for pr in params}
 # print net.params['fc1'][0].data
@@ -147,6 +156,4 @@ plt.clf()
 #    print source_params[pr][1]  #bias
 #    print '_____________'    
 #    print source_params[pr][0]  #weights
-
-
 
