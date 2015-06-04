@@ -75,8 +75,10 @@ files = os.listdir(path_to_model)
 files = filter(lambda x: re.search(r'caffemodel', x), files)
 snapshots_names = list()
 for file in files:
-  snapshots_names.append(int(file.split('_')[2].split('.')[0]))
+ snapshots_names.append(int(file.split('_')[2].split('.')[0]))
+snapshots_names.sort()
 
+   
 # load the first model
 with suppress_stdout_stderr():
   net_curr = caffe.Net(path_to_network + 'network_' + model_name + '.prototxt', path_to_model + 'model_iter_%i.caffemodel' % snapshots_names[0], caffe.TRAIN)
