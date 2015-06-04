@@ -6,7 +6,6 @@ Network "Firstborn" on size256
 
 <img src="./plots/2015-06-04-18-14_accuracy.png" width="400">
 <img src="./plots/2015-06-04-18-14_loss.png" width="400">
-<img src="./plots/2015-06-04-18-17_feature_squares.png" width="400">
 <img src="./plots/2015-06-04-18-17_stds_weights.png" width="400">
 <img src="./plots/2015-06-04-18-17_mean_weights.png" width="400">
 <img src="./plots/2015-06-04-18-17_weight_ratios.png" width="400">  
