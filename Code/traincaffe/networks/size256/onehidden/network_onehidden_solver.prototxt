@@ -1,7 +1,7 @@
 net: "/home/hpc_kuz/Kaggle/Diabetic-Retinopathy-Detection/Code/traincaffe/networks/size256/onehidden/network_onehidden.prototxt"
 test_iter: 100
 test_interval: 100
-base_lr: 0.000001
+base_lr: 0.000000001
 lr_policy: "fixed"
 display: 100
 max_iter: 1000000
