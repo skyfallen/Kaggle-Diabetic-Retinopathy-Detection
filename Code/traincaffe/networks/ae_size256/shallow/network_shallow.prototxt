@@ -1,4 +1,4 @@
-name: “ShallowAutoencoder"
+name: "ShallowAutoencoder"
 layer {
   name: "data"
   type: "Data"
@@ -7,7 +7,7 @@ layer {
     phase: TRAIN
   }
   data_param {
-    source: "examples/mnist/mnist_train_lmdb"
+    source: "/storage/hpc_anna/Kaggle_DRD/caffeinput/ae_size256/ilsvrc12_traintest_lmdb"
     batch_size: 128
     backend: LMDB
   }
@@ -21,7 +21,7 @@ layer {
     stage: "test-on-train"
   }
   data_param {
-    source: "examples/mnist/mnist_train_lmdb"
+    source: "/storage/hpc_anna/Kaggle_DRD/caffeinput/ae_size256/ilsvrc12_traintest_lmdb"
     batch_size: 128
     backend: LMDB
   }
@@ -35,7 +35,7 @@ layer {
     stage: "test-on-test"
   }
   data_param {
-    source: "examples/mnist/mnist_test_lmdb"
+    source: "/storage/hpc_anna/Kaggle_DRD/caffeinput/ae_size256/ilsvrc12_val_lmdb"
     batch_size: 128
     backend: LMDB
   }
@@ -79,10 +79,10 @@ layer {
   top: "encode1neuron"
 }
 layer {
-  name: "decode1”
+  name: "decode1"
   type: "InnerProduct"
-  bottom: "encode1”
-  top: "decode1”
+  bottom: "encode1"
+  top: "decode1"
   param {
     lr_mult: 1
     decay_mult: 1
@@ -92,7 +92,7 @@ layer {
     decay_mult: 0
   }
   inner_product_param {
-    num_output: 65533
+    num_output: 196608
     weight_filler {
       type: "gaussian"
       std: 1
