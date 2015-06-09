@@ -2,15 +2,15 @@
 from sklearn import svm
 import numpy as np
 import os
-from scipy.misc import imread, imsave
+from scipy.misc import imsave,imread
 from sklearn.grid_search import GridSearchCV
 from datetime import datetime
 
 # Define directory with images we want to use
 def load_subset(subset):
 	images_labels = {}
-	path_to_images = '/storage/hpc_anna/Kaggle_DRD/sample_images/size256/' + subset
-	labels_file = '/storage/hpc_anna/Kaggle_DRD/sample_caffeinput/size256/' + subset + '.txt'
+	path_to_images = '/storage/hpc_anna/Kaggle_DRD/images/size256/' + subset
+	labels_file = '/storage/hpc_anna/Kaggle_DRD/caffeinput/size256/' + subset + '.txt'
 	images_labels = {}
 	with open(labels_file, 'r') as f:
 		dict_labels = dict([line.strip().split() for line in f.readlines()])
@@ -22,8 +22,10 @@ def load_subset(subset):
 	images = np.zeros((len(files), 256*256*3), dtype=np.uint8)
 	labels = []
 	for fid, file in enumerate(files):
-        	image = imread(path_to_images + '/' + file)
-        	images[fid] = image.flatten()
+        	if fid % 1000 == 0:
+			print fid
+		image = imread(path_to_images + '/' + file)
+		images[fid] = image.flatten()
 		labels.append(int(dict_labels[file]))
 
 	return images, labels, files
