@@ -3,8 +3,8 @@
 #
 # Extract network activations when run on test or validation data
 #
-# Usage: ./test_drdnet.sh PREFIX PREPROC MODELNAME SUBSET NSAMPLES
-# Example: ./test_drdnet.sh "" size256 basic test 107
+# Usage: ./explore_network.sh PREFIX PREPROC MODELNAME
+# Example: ./explore_network.sh "" size256 basic
 #
 
 PREFIX=$1
