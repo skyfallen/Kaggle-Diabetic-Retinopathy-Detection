@@ -2,8 +2,16 @@ Network "Firstborn" on size256
 ------------------------------
 
 [Put grapviz visualization of the netwohere]  
-###### LR 0.00000001 fixed, Momentum 0.9, Weight decay 0.0005 
-
+###### LR 0.00000001 fixed, Momentum 0.9, Weight decay 0.0005, kappa on val 0.0
+<img src="./plots/2015-06-10-01-23_accuracy.png" width="400">
+<img src="./plots/2015-06-10-01-23_loss.png" width="400">
+<img src="./plots/2015-06-10-01-35_mean_weights.png" width="400">
+<img src="./plots/2015-06-10-01-35_stds_weights.png" width="400">
+<img src="./plots/2015-06-10-01-35_weight_ratios.png" width="400">  
+<img src="./plots/2015-06-10-01-35_viz_conv1.png" width="400">
+<img src="./plots/2015-06-10-01-35_viz_conv2.png" width="400">
+<img src="./plots/2015-06-10-01-35_viz_conv3.png" width="400">
+<img src="./plots/2015-06-10-01-35_viz_conv4.png" width="400">
 ###### LR 0.00001 fixed, Momentum 0.9, Weight decay 0.0005 Kappa 0.084 (on 44000)
 
 <img src="./plots/2015-06-04-18-14_accuracy.png" width="400">
