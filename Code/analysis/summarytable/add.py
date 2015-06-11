@@ -26,6 +26,7 @@ networkfile = home + '/Kaggle/Diabetic-Retinopathy-Detection/Code/traincaffe/net
              '/network_' + modelname + '.prototxt'
 imgdir = home + '/Kaggle/Diabetic-Retinopathy-Detection/Code/traincaffe/networks/' + preproc + '/' + modelname + \
              '/plots/' + imgdate
+relimgdir = './' + preproc + '/' + modelname + '/plots/' + imgdate
 if not os.path.exists(solverfile):
     print 'Not Found:', solverfile
     exit()
@@ -49,11 +50,11 @@ lr = ''
 momentum = None
 decay = None
 dropout = 0
-imgacc = imgdir + '/accuracy.png'
-imgloss = imgdir + '/loss.png'
-imgwratio = imgdir + '/weight_ratios.png'
-imgwmean = imgdir + '/mean_weights.png'
-imgwstd = imgdir + '/stds_weights.png'
+imgacc = relimgdir + '/accuracy.png'
+imgloss = relimgdir + '/loss.png'
+imgwratio = relimgdir + '/weight_ratios.png'
+imgwmean = relimgdir + '/mean_weights.png'
+imgwstd = relimgdir + '/stds_weights.png'
 convlayers = []
 
 # parse solver
@@ -112,7 +113,7 @@ with open(networkfile) as f:
                 except:
                     pass
 
-            imgfile = imgdir + '/viz_conv' + str(len(convlayers) + 1) + '.png'
+            imgfile = relimgdir + '/viz_conv' + str(len(convlayers) + 1) + '.png'
             convlayers.append({'img': imgfile, 'numout': numout, 'size': size, 'stride': stride})
 
 # build the record to be added
