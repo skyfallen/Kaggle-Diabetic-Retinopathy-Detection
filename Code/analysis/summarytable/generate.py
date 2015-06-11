@@ -20,10 +20,20 @@ with open(outhtml, 'w') as f:
     # prepend file with a table header
     f.write(header)
 
-    for row in c.execute('SELECT * FROM summary'):
+    for row in c.execute('SELECT * FROM summary ORDER BY id DESC'):
 
         # unpack values form SQL record
         (id, date, model, dataset, kval, ktest, lr, momentum, decay, dropout, imgacc, imgloss, imgwratio, imgwmean, imgwstd, convlayers) = row
+	if kval is None:
+		kval = ""
+	if ktest is None:
+		ktest = ""
+	if momentum is None:
+		momentum = ""
+	if decay is None:
+		decay = ""
+	if dropout is None:
+		dropout = ""
         convlayers = json.loads(convlayers)
 
         # generate table row
