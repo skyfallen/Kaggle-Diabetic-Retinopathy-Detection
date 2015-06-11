@@ -14,21 +14,19 @@ def load_subset(subset):
 	images_labels = {}
 	with open(labels_file, 'r') as f:
 		dict_labels = dict([line.strip().split() for line in f.readlines()])
-		
 	# List files in this directory
 	files = os.listdir(path_to_images)
 	
 	# Create structure for holding images
 	images = np.zeros((len(files), 256*256*3), dtype=np.uint8)
-	labels = []
+	labels = np.zeros(len(files), dtype=np.uint8)
 	for fid, file in enumerate(files):
         	if fid % 1000 == 0:
 			print fid
 		image = imread(path_to_images + '/' + file)
-		if image.shape == (28100, 196608):
+		if image.shape == (256, 256, 3):
 			images[fid] = image.flatten()
-			labels.append(int(dict_labels[file]))
-
+			labels[fid] = int(dict_labels[file])
 	return images, labels, files
 
 def kappa(labels, predictions):
@@ -68,15 +66,16 @@ def kappa(labels, predictions):
         kappa = 1.0 - (sum(sum(weighted * observed)) / sum(sum(weighted * expected)))
 	return kappa
 
-#print load_subset('train')
 train_images, train_labels, train_files = load_subset('train')
 val_images, val_labels, val_files = load_subset('val')
 test_images, test_labels, test_files = load_subset('test')
   
 param_grid = {'C':[0.00001, 0.0001, 0.001, 0.01, 0.1, 1, 1e2, 1e3, 1e4], 'gamma':[0.0001, 0.01, 0.1, 1],}
 #param_grid = {'C':[0.1], 'gamma':[1],}
-clf = GridSearchCV(svm.SVC(kernel='rbf', class_weight='auto'), param_grid, verbose=5, n_jobs=12)
+clf = GridSearchCV(svm.SVC(kernel='rbf', class_weight='auto'), param_grid, verbose=5, n_jobs=1)
+print set(train_labels)
 clf = clf.fit(train_images, train_labels)
+exit()
 val_predictions = clf.predict(val_images)
 print 'Kappa =', kappa(val_labels, val_predictions)
 
