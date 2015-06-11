@@ -9,8 +9,8 @@ from datetime import datetime
 # Define directory with images we want to use
 def load_subset(subset):
 	images_labels = {}
-	path_to_images = '/storage/hpc_anna/Kaggle_DRD/images/size256/' + subset
-	labels_file = '/storage/hpc_anna/Kaggle_DRD/caffeinput/size256/' + subset + '.txt'
+	path_to_images = '/storage/hpc_anna/Kaggle_DRD/images/b10size256/' + subset
+	labels_file = '/storage/hpc_anna/Kaggle_DRD/caffeinput/b10size256/' + subset + '.txt'
 	images_labels = {}
 	with open(labels_file, 'r') as f:
 		dict_labels = dict([line.strip().split() for line in f.readlines()])
@@ -25,8 +25,9 @@ def load_subset(subset):
         	if fid % 1000 == 0:
 			print fid
 		image = imread(path_to_images + '/' + file)
-		images[fid] = image.flatten()
-		labels.append(int(dict_labels[file]))
+		if image.shape == (28100, 196608):
+			images[fid] = image.flatten()
+			labels.append(int(dict_labels[file]))
 
 	return images, labels, files
 
