@@ -19,13 +19,16 @@ cat "/storage/hpc_anna/Kaggle_DRD/"$PREFIX"caffeinput/"$PREPROC"/model_"$MODELNA
 cat "/storage/hpc_anna/Kaggle_DRD/"$PREFIX"caffeinput/"$PREPROC"/model_"$MODELNAME"/log.txt" | grep "Test net output #0: accuracy_TEST" | awk '{ print $11 }' > "/tmp/"$USER"_plot_test_acc.txt"
 cat "/storage/hpc_anna/Kaggle_DRD/"$PREFIX"caffeinput/"$PREPROC"/model_"$MODELNAME"/log.txt" | grep "Test net output #1: loss =" | awk '{ print $11 }' > "/tmp/"$USER"_plot_test_loss.txt"
 
+CURDATE=$(date +%Y-%m-%d-%H-%M)
 mkdir $HOME"/Kaggle/Diabetic-Retinopathy-Detection/Code/traincaffe/networks/"$PREPROC"/"$PREFIX$MODELNAME"/plots"
+mkdir $HOME"/Kaggle/Diabetic-Retinopathy-Detection/Code/traincaffe/networks/"$PREPROC"/"$PREFIX$MODELNAME"/plots/"$CURDATE
+
 if [ "$PREFIX" == "" ]; then
-	python $HOME"/Kaggle/Diabetic-Retinopathy-Detection/Code/traincaffe/plot_accuracy_loss.py" EMPTY $PREPROC $MODELNAME
-	python $HOME"/Kaggle/Diabetic-Retinopathy-Detection/Code/traincaffe/plot_weight_stats.py" EMPTY $PREPROC $MODELNAME
+	python $HOME"/Kaggle/Diabetic-Retinopathy-Detection/Code/traincaffe/plot_accuracy_loss.py" EMPTY $PREPROC $MODELNAME $CURDATE
+	python $HOME"/Kaggle/Diabetic-Retinopathy-Detection/Code/traincaffe/plot_weight_stats.py" EMPTY $PREPROC $MODELNAME $CURDATE
 else
-	python $HOME"/Kaggle/Diabetic-Retinopathy-Detection/Code/traincaffe/plot_accuracy_loss.py" $PREFIX $PREPROC $MODELNAME
-	python $HOME"/Kaggle/Diabetic-Retinopathy-Detection/Code/traincaffe/plot_weight_stats.py" $PREFIX $PREPROC $MODELNAME
+	python $HOME"/Kaggle/Diabetic-Retinopathy-Detection/Code/traincaffe/plot_accuracy_loss.py" $PREFIX $PREPROC $MODELNAME $CURDATE
+	python $HOME"/Kaggle/Diabetic-Retinopathy-Detection/Code/traincaffe/plot_weight_stats.py" $PREFIX $PREPROC $MODELNAME $CURDATE
 fi
 
 # wait a bit and remove temp files
