@@ -124,7 +124,7 @@ record = (date, model, dataset, lr, momentum, decay, dropout,
 
 # run SQL request
 c.execute('INSERT INTO summary (date, model, dataset, lr, momentum, decay, dropout, imgacc, imgloss, imgwratio,'
-          'imgwmean, imgwstd, convlayers, iteration) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', record)
+          'imgwmean, imgwstd, convlayers, interation) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', record)
 
 # save (commit) the changes
 conn.commit()
