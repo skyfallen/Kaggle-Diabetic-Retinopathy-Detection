@@ -1,0 +1,30 @@
+#!/usr/bin/env sh
+# Compute the mean image from the Kaggle_DRD training lmdb
+# N.B. this is available in data/ilsvrc12
+#
+# Usage: ./make_drdnet_mean.sh PREFIX PREPROC
+# Example: ./make_drdnet_mean.sh "" size256
+#
+
+PREFIX=$1
+PREPROC=$2
+
+echo "Running with PREFIX="$PREFIX" and PREPROC="$PREPROC
+read -n1 -r -p "Is it OK? (any key if yes, ^C if no)" key
+
+CAFFEINPUT="/storage/hpc_anna/Kaggle_DRD/"$PREFIX"caffeinput"
+IMAGES="/storage/hpc_anna/Kaggle_DRD/"$PREFIX"images"
+TOOLS=$HOME/Software/Caffe/build/tools
+
+echo "Removing old image mean files..."
+rm $CAFFEINPUT/$PREPROC/drdnet_mean_*
+
+echo "Computing image means..."
+$TOOLS/compute_image_mean $CAFFEINPUT/$PREPROC/ilsvrc12_train_lmdb $CAFFEINPUT/$PREPROC/drdnet_mean_train.binaryproto
+$TOOLS/compute_image_mean $CAFFEINPUT/$PREPROC/ilsvrc12_val_lmdb $CAFFEINPUT/$PREPROC/drdnet_mean_val.binaryproto
+$TOOLS/compute_image_mean $CAFFEINPUT/$PREPROC/ilsvrc12_test_lmdb $CAFFEINPUT/$PREPROC/drdnet_mean_test.binaryproto
+$TOOLS/compute_image_mean $CAFFEINPUT/$PREPROC/ilsvrc12_traintest_lmdb $CAFFEINPUT/$PREPROC/drdnet_mean_traintest.binaryproto
+
+chmod 777 $CAFFEINPUT/$PREPROC/drdnet_mean_*
+
+echo "Done."

@@ -6,8 +6,8 @@ import json
 
 # read cmd arguments
 if len(sys.argv) != 5:
-    print 'Usage:', sys.argv[0], '<prefix> <preprocessing_type> <model_name> <imgfolder>'
-    print 'Usage example: python add.py EMPTY size256 firstborn 2015-06-10-01-35'
+    print 'Usage:', sys.argv[0], '<prefix> <preprocessing_type> <model_name> <iteration> <imgfolder>'
+    print 'Usage example: python add.py EMPTY size256 firstborn 50000 2015-06-10-01-35'
     sys.exit(2)
 
 # read out cmd arguments and env variables
@@ -17,7 +17,8 @@ if prefix == 'EMPTY':
     prefix = ''
 preproc = sys.argv[2]
 modelname = sys.argv[3]
-imgdate = sys.argv[4]
+iteration = sys.argv[4]
+imgdate = sys.argv[5]
 
 # check that all required files exist
 solverfile = home + '/Kaggle/Diabetic-Retinopathy-Detection/Code/traincaffe/networks/' + preproc + '/' + modelname + \
@@ -45,6 +46,7 @@ c = conn.cursor()
 # prepare variables to be parsed and added to db
 date = imgdate
 model = modelname
+iteration = iteration
 dataset = preproc
 lr = ''
 momentum = None
@@ -118,11 +120,11 @@ with open(networkfile) as f:
 
 # build the record to be added
 record = (date, model, dataset, lr, momentum, decay, dropout,
-          imgacc, imgloss, imgwratio, imgwmean, imgwstd, json.dumps(convlayers))
+          imgacc, imgloss, imgwratio, imgwmean, imgwstd, json.dumps(convlayers), iteration)
 
 # run SQL request
 c.execute('INSERT INTO summary (date, model, dataset, lr, momentum, decay, dropout, imgacc, imgloss, imgwratio,'
-          'imgwmean, imgwstd, convlayers) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', record)
+          'imgwmean, imgwstd, convlayers, iteration) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', record)
 
 # save (commit) the changes
 conn.commit()
