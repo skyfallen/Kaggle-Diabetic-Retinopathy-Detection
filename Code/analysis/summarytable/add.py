@@ -5,7 +5,7 @@ import string
 import json
 
 # read cmd arguments
-if len(sys.argv) != 5:
+if len(sys.argv) != 6:
     print 'Usage:', sys.argv[0], '<prefix> <preprocessing_type> <model_name> <iteration> <imgfolder>'
     print 'Usage example: python add.py EMPTY size256 firstborn 50000 2015-06-10-01-35'
     sys.exit(2)
