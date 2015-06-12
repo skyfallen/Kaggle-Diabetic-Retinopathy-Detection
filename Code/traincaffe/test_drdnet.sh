@@ -19,7 +19,9 @@ read -n1 -r -p "Is it OK? (any key if yes, ^C if no)" key
 
 # create output directories
 mkdir "/storage/hpc_anna/Kaggle_DRD/"$PREFIX"features/"$PREPROC
+chmod 777 "/storage/hpc_anna/Kaggle_DRD/"$PREFIX"features/"$PREPROC
 mkdir "/storage/hpc_anna/Kaggle_DRD/"$PREFIX"features/"$PREPROC"/model_"$MODELNAME
+chmod 777 "/storage/hpc_anna/Kaggle_DRD/"$PREFIX"features/"$PREPROC"/model_"$MODELNAME
 
 # remove previous results
 rm -rf "/storage/hpc_anna/Kaggle_DRD/"$PREFIX"features/"$PREPROC"/features_"$MODELNAME"_"$SUBSET

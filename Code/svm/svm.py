@@ -70,12 +70,11 @@ train_images, train_labels, train_files = load_subset('train')
 val_images, val_labels, val_files = load_subset('val')
 test_images, test_labels, test_files = load_subset('test')
   
-param_grid = {'C':[0.00001, 0.0001, 0.001, 0.01, 0.1, 1, 1e2, 1e3, 1e4], 'gamma':[0.0001, 0.01, 0.1, 1],}
-#param_grid = {'C':[0.1], 'gamma':[1],}
+#param_grid = {'C':[0.00001, 0.0001, 0.001, 0.01, 0.1, 1, 1e2, 1e3, 1e4], 'gamma':[0.0001, 0.01, 0.1, 1],}
+param_grid = {'C':[1], 'gamma':[0.0001],}
 clf = GridSearchCV(svm.SVC(kernel='rbf', class_weight='auto'), param_grid, verbose=5, n_jobs=1)
 print set(train_labels)
 clf = clf.fit(train_images, train_labels)
-exit()
 val_predictions = clf.predict(val_images)
 print 'Kappa =', kappa(val_labels, val_predictions)
 
