@@ -23,7 +23,7 @@ with open(outhtml, 'w') as f:
     for row in c.execute('SELECT * FROM summary ORDER BY id DESC'):
 
         # unpack values form SQL record
-        (id, date, model, dataset, kval, ktest, lr, momentum, decay, dropout, imgacc, imgloss, imgwratio, imgwmean, imgwstd, convlayers) = row
+        (id, date, model, dataset, kval, ktest, lr, momentum, decay, dropout, imgacc, imgloss, imgwratio, imgwmean, imgwstd, convlayers, iteration) = row
 	if kval is None:
 		kval = ""
 	if ktest is None:
@@ -34,6 +34,8 @@ with open(outhtml, 'w') as f:
 		decay = ""
 	if dropout is None:
 		dropout = ""
+	if iteration is None:
+		iteration = ""
         convlayers = json.loads(convlayers)
 
         # generate table row
@@ -41,6 +43,7 @@ with open(outhtml, 'w') as f:
         tablerow += '<td>' + str(id) + '</td>'
         tablerow += '<td>' + date + '</td>'
         tablerow += '<td>' + model + '</td>'
+	tablerow += '<td>' + iteration + '</td>'
         tablerow += '<td>' + dataset + '</td>'
         tablerow += '<td>' + str(kval) + '</td>'
         tablerow += '<td>' + str(ktest) + '</td>'
