@@ -38,6 +38,8 @@ sleep 60
 chmod -R 777 "/storage/hpc_anna/Kaggle_DRD/"$PREFIX"features/"$PREPROC"/features_"$MODELNAME"_"$SUBSET
 
 # extract labels from LMDB
+mkdir "/storage/hpc_anna/Kaggle_DRD/"$PREFIX"predictions/"$PREPROC
+chmod 777 "/storage/hpc_anna/Kaggle_DRD/"$PREFIX"predictions/"$PREPROC
 rm "/storage/hpc_anna/Kaggle_DRD/"$PREFIX"predictions/"$PREPROC"/predictions_"$MODELNAME"_"$SUBSET".txt"
 source ~/Python/bin/activate
 if [ "$PREFIX" == "" ]; then
