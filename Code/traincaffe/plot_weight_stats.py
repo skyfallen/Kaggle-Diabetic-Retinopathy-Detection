@@ -72,7 +72,7 @@ model_name = sys.argv[3]
 date = sys.argv[4]
 
 # set path to network and model
-path_to_network = '/home/hpc_anna1985/Kaggle/Diabetic-Retinopathy-Detection/Code/traincaffe/networks/'+ preprocessing_type + '/' +  model_name + '/'
+path_to_network = '/home/' + user + '/Kaggle/Diabetic-Retinopathy-Detection/Code/traincaffe/networks/'+ preprocessing_type + '/' +  model_name + '/'
 path_to_model = '/storage/hpc_anna/Kaggle_DRD/' + prefix + 'caffeinput/' + preprocessing_type + '/model_' + model_name + '/'
 
 # extract snapshots in the network directory
@@ -120,7 +120,13 @@ for layer in net_curr.layers:
         conv_layer_counter += 1
         path_to_plot = '/home/' + user + '/Kaggle/Diabetic-Retinopathy-Detection/Code/traincaffe/networks/' + \
                        preprocessing_type + '/' + prefix + model_name + '/plots/' + date + '/viz_conv' + str(conv_layer_counter) + '.png'
-        vis_square(layer.blobs[0].data.transpose(0, 2, 3, 1), path_to_plot)
+	channels = layer.blobs[0].data.shape[1]
+	w = layer.blobs[0].data.shape[2]
+	h = layer.blobs[0].data.shape[3]
+	if channels == 3:
+		vis_square(layer.blobs[0].data.transpose(0, 2, 3, 1), path_to_plot)
+	else:
+		vis_square(layer.blobs[0].data[:channels].reshape(channels**2, w, h), path_to_plot)
 
 
 # function to plot stats from all layers on one figure
