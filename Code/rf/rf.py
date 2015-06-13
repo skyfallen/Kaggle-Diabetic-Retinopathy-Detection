@@ -1,4 +1,4 @@
-# Run SVM on retina images
+# Run Random Forest  on retina images
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.cross_validation import ShuffleSplit
 import numpy as np
@@ -6,6 +6,7 @@ import os
 from scipy.misc import imsave,imread
 from sklearn.grid_search import GridSearchCV
 from datetime import datetime
+import cPickle
 
 # Define directory with images we want to use
 def load_subset(subset):
@@ -81,6 +82,9 @@ CV_rfc = CV_rfc.fit(train_images, train_labels)
 val_predictions = CV_rfc.predict(val_images)
 print 'Kappa =', kappa(val_labels, val_predictions)
 
+with open('/storage/hpc_anna/Kaggle_DRD/rf/b10size256/rf_500_auto.pkl', 'w') as f:
+	pickle.dump(CV_rfc, f)
+ 
 test_predictions = CV_rfc.predict(test_images)
 date = datetime.now()
 date = date.strftime("%Y-%m-%d-%H-%M")
