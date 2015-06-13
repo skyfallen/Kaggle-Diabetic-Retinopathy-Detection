@@ -70,7 +70,6 @@ def kappa(labels, predictions):
 
 train_images, train_labels, train_files = load_subset('train')
 val_images, val_labels, val_files = load_subset('val')
-test_images, test_labels, test_files = load_subset('test')
   
 rfc = RandomForestClassifier(n_jobs=-1,max_features= 'sqrt' ,n_estimators=50, oob_score = True) 
 param_grid = {
@@ -84,12 +83,4 @@ print 'Kappa =', kappa(val_labels, val_predictions)
 
 with open('/storage/hpc_anna/Kaggle_DRD/rf/b10size256/rf_500_auto.pkl', 'w') as f:
 	pickle.dump(CV_rfc, f)
- 
-test_predictions = CV_rfc.predict(test_images)
-date = datetime.now()
-date = date.strftime("%Y-%m-%d-%H-%M")
-with open('/storage/hpc_anna/Kaggle_DRD/predictions/size256/rf/' + date + '_predictions_rf_test.csv', 'w') as f:
-	f.write('image,level\n')
-	for fid, file in enumerate(test_files):
-		f.write(file + ',' + str(test_predictions[fid]) + '\n')
-print 'Submission file saved as' + '/storage/hpc_anna/Kaggle_DRD/predictions/size256/rf/' + date + '_predictions_rf_test.csv' 
+print 'Model saved as ' + '/storage/hpc_anna/Kaggle_DRD/rf/b10size256/rf/rf_500_auto.pkl' 
