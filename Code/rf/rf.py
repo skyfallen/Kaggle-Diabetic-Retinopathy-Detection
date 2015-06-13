@@ -82,5 +82,5 @@ val_predictions = CV_rfc.predict(val_images)
 print 'Kappa =', kappa(val_labels, val_predictions)
 
 with open('/storage/hpc_anna/Kaggle_DRD/rf/b10size256/rf_500_auto.pkl', 'w') as f:
-	pickle.dump(CV_rfc, f)
-print 'Model saved as ' + '/storage/hpc_anna/Kaggle_DRD/rf/b10size256/rf/rf_500_auto.pkl' 
+	cPickle.dump(CV_rfc, f)
+print 'Model saved as ' + '/storage/hpc_anna/Kaggle_DRD/rf/b10size256/rf_500_auto.pkl' 
