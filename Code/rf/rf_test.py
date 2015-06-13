@@ -37,8 +37,8 @@ with open('/storage/hpc_anna/Kaggle_DRD/rf/b10size256/rf_500_auto.pkl', 'r') as 
 t_predictions = CV_rfc.predict(test_images)
 date = datetime.now()
 date = date.strftime("%Y-%m-%d-%H-%M")
-with open('/storage/hpc_anna/Kaggle_DRD/predictions/b10size256/rf/' + date + '_predictions_rf_test.csv', 'w') as f:
+with open('/storage/hpc_anna/Kaggle_DRD/predictions/' + date + '_predictions_rf_test.csv', 'w') as f:
         f.write('image,level\n')
         for fid, file in enumerate(test_files):
                 f.write(file + ',' + str(test_predictions[fid]) + '\n')
-print 'Submission file saved as' + '/storage/hpc_anna/Kaggle_DRD/predictions/b10size256/rf/' + date + '_predictions_rf_test.csv'
+print 'Submission file saved as' + '/storage/hpc_anna/Kaggle_DRD/predictions/' + date + '_predictions_rf_test.csv'
