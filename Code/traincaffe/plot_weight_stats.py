@@ -72,7 +72,7 @@ model_name = sys.argv[3]
 date = sys.argv[4]
 
 # set path to network and model
-path_to_network = '/home/hpc_anna1985/Kaggle/Diabetic-Retinopathy-Detection/Code/traincaffe/networks/'+ preprocessing_type + '/' +  model_name + '/'
+path_to_network = '/home/' + user + '/Kaggle/Diabetic-Retinopathy-Detection/Code/traincaffe/networks/'+ preprocessing_type + '/' +  model_name + '/'
 path_to_model = '/storage/hpc_anna/Kaggle_DRD/' + prefix + 'caffeinput/' + preprocessing_type + '/model_' + model_name + '/'
 
 # extract snapshots in the network directory
