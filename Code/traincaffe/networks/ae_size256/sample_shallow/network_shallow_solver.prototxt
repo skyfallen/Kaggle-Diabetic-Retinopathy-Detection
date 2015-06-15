@@ -1,0 +1,18 @@
+net: "/home/hpc_kuz/Kaggle/Diabetic-Retinopathy-Detection/Code/traincaffe/networks/ae_size256/sample_shallow/network_shallow.prototxt"
+#test_state: { stage: 'test-on-train' }
+#test_iter: 100
+#test_state: { stage: 'test-on-test' }
+test_iter: 10
+test_interval: 100
+test_compute_loss: true
+base_lr: 0.00001
+lr_policy: "step"
+gamma: 0.1
+stepsize: 100000
+display: 100
+max_iter: 1000000
+weight_decay: 0.0005
+snapshot: 1000
+snapshot_prefix: "/storage/hpc_anna/Kaggle_DRD/sample_caffeinput/ae_size256/model_shallow/model"
+momentum: 0.9
+solver_mode: GPU
