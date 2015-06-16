@@ -20,7 +20,7 @@ with open(outhtml, 'w') as f:
     # prepend file with a table header
     f.write(header)
 
-    for row in c.execute('SELECT * FROM summary ORDER BY id DESC'):
+    for row in c.execute('SELECT * FROM summary ORDER BY model ASC, id DESC'):
 
         # unpack values form SQL record
         (id, date, model, dataset, kval, ktest, lr, momentum, decay, dropout, imgacc, imgloss, imgwratio, imgwmean, imgwstd, convlayers, iteration) = row
