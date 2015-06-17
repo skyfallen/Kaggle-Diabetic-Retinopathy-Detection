@@ -5,6 +5,8 @@ import os
 from scipy.misc import imsave,imread
 from sklearn.grid_search import GridSearchCV
 from datetime import datetime
+import cPickle
+from sklearn.cross_validation import ShuffleSplit
 
 # Define directory with images we want to use
 def load_subset(subset):
@@ -16,7 +18,8 @@ def load_subset(subset):
 		dict_labels = dict([line.strip().split() for line in f.readlines()])
 	# List files in this directory
 	files = os.listdir(path_to_images)
-	
+	#files = files[0:10000]
+
 	# Create structure for holding images
 	images = np.zeros((len(files), 256*256*3), dtype=np.uint8)
 	labels = np.zeros(len(files), dtype=np.uint8)
@@ -67,22 +70,16 @@ def kappa(labels, predictions):
 	return kappa
 
 train_images, train_labels, train_files = load_subset('train')
-val_images, val_labels, val_files = load_subset('val')
-test_images, test_labels, test_files = load_subset('test')
+#val_images, val_labels, val_files = load_subset('val')
   
 #param_grid = {'C':[0.00001, 0.0001, 0.001, 0.01, 0.1, 1, 1e2, 1e3, 1e4], 'gamma':[0.0001, 0.01, 0.1, 1],}
 param_grid = {'C':[1], 'gamma':[0.0001],}
-clf = GridSearchCV(svm.SVC(kernel='rbf', class_weight='auto'), param_grid, verbose=5, n_jobs=1)
-print set(train_labels)
+clf = GridSearchCV(svm.SVC(kernel='rbf', class_weight='auto'), param_grid, n_jobs=1, cv=ShuffleSplit(test_size=0.20, n_iter=1, random_state=0, n=len(train_images)))
 clf = clf.fit(train_images, train_labels)
-val_predictions = clf.predict(val_images)
-print 'Kappa =', kappa(val_labels, val_predictions)
+#val_predictions = clf.predict(val_images)
+#print 'Kappa =', kappa(val_labels, val_predictions)
 
-test_predictions = clf.predict(test_images)
-date = datetime.now()
-date = date.strftime("%Y-%m-%d-%H-%M")
-with open('/storage/hpc_anna/Kaggle_DRD/predictions/size256/svm/' + date + '_predictions_svm_test.csv', 'w') as f:
-	f.write('image,level\n')
-	for fid, file in enumerate(test_files):
-		f.write(file + ',' + str(test_predictions[fid]) + '\n')
-print 'Submission file saved as' + '/storage/hpc_anna/Kaggle_DRD/predictions/size256/svm/' + date + '_predictions_svm_test.csv' 
+with open('/storage/hpc_anna/Kaggle_DRD/svm/b10size256/svm_c1_g0001.pkl', 'w') as f:
+        cPickle.dump(clf, f)
+print 'Model saved as ' + '/storage/hpc_anna/Kaggle_DRD/svm/b10size256/svm_c1_g0001.pkl'
+
