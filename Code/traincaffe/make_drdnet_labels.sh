@@ -14,6 +14,7 @@ SUBSET=$3
 echo "Running with PREFIX="$PREFIX", PREPROC="$PREPROC" and SUBSET="$SUBSET
 read -n1 -r -p "Is it OK? (any key if yes, ^C if no)" key
 
+mkdir "/storage/hpc_anna/Kaggle_DRD/"$PREFIX"caffeinput/"$PREPROC
 cd "/storage/hpc_anna/Kaggle_DRD/"$PREFIX"images/"$PREPROC"/"$SUBSET
 if [ "$SUBSET" != "test" ]; then
 	find . -name '*.jpg'| sed 's/^\.\//\^/g' > "/tmp/temp_"$SUBSET"_labels.txt"
