@@ -78,6 +78,16 @@ layer {
   }
 }
 layer {
+  name: "drop"
+  type: "Dropout"
+  bottom: "fc1"
+  top: "fc1"
+  dropout_param {
+    dropout_ratio: 0.5
+  }
+}
+
+layer {
   name: "fc2"
   type: "InnerProduct"
   bottom: "fc1"

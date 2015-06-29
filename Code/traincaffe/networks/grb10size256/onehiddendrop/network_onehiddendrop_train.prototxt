@@ -78,7 +78,15 @@ layer {
   }
 }
 
-/storage/hpc_anna/Kaggle_DRD/caffeinput/grb10size256/model_onehiddendrop/model
+layer {
+  name: "drop"
+  type: "Dropout"
+  bottom: "fc1"
+  top: "fc1"
+  dropout_param {
+    dropout_ratio: 0.5
+  }
+}
 
 layer {
   name: "fc2"
