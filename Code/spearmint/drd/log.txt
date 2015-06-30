@@ -99,3 +99,9 @@
 2015-06-30T21:40:54.428+0300 I NETWORK  [conn36] end connection 127.0.0.1:50564 (3 connections now open)
 2015-06-30T21:41:12.710+0300 I NETWORK  [conn2] end connection 127.0.0.1:50309 (1 connection now open)
 2015-06-30T21:41:12.710+0300 I NETWORK  [conn1] end connection 127.0.0.1:50308 (1 connection now open)
+2015-06-30T22:05:30.502+0300 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:51047 #37 (1 connection now open)
+2015-06-30T22:05:30.503+0300 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:51048 #38 (2 connections now open)
+2015-06-30T22:05:33.922+0300 I STORAGE  [journal writer] In File::open(), ::open for '/home/hpc_anna1985/Kaggle/Diabetic-Retinopathy-Detection/Code/spearmint/drd/journal/lsn' failed with errno:2 No such file or directory
+2015-06-30T22:05:33.922+0300 I JOURNAL  [journal writer] warning: open of lsn file failed
+2015-06-30T22:06:01.033+0300 I NETWORK  [conn37] end connection 127.0.0.1:51047 (1 connection now open)
+2015-06-30T22:06:01.033+0300 I NETWORK  [conn38] end connection 127.0.0.1:51048 (1 connection now open)
