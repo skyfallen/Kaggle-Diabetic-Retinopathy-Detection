@@ -1,10 +1,10 @@
 net: "/home/hpc_kuz/Kaggle/Diabetic-Retinopathy-Detection/Code/traincaffe/networks/grb10size256/onehiddendrop/network_onehiddendrop.prototxt"
 test_iter: 30
 test_interval: 50
-base_lr: 0.00001
+base_lr: 0.0001
 lr_policy: "fixed"
 display: 50
-max_iter: 1000000
+max_iter: 3000
 momentum: 0.9
 weight_decay: 0.05
 snapshot: 500
