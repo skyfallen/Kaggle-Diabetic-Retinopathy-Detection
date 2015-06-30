@@ -1,0 +1,30 @@
+#1
+lr=0.001
+momentum=0.9
+weight_decay=0.05
+dropout=false
+kappa= wasn't working
+#2
+lr=0.00001
+mementum=0.9
+weight_decay=0.0
+dropout=false
+kappa=0.0165021506724
+#3
+lr=0.0001
+mementum=0.9
+weight_decay=0.0
+dropout=false
+kappa=0.0219735059929
+#4 (potentially achieved k_val 0.17)
+lr=0.001
+mementum=0.9
+weight_decay=0.0
+dropout=false
+kappa=0.097
+#5
+lr=0.01
+mementum=0.9
+weight_decay=0.0
+dropout=false
+kappa=
