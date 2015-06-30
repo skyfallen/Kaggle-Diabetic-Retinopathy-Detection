@@ -9,7 +9,7 @@ layer {
   }
   transform_param {
     mirror: false
-    mean_file: "/storage/hpc_anna/Kaggle_DRD/caffeinput/grb10size256/drdnet_mean_test.binaryproto"
+    mean_file: "/storage/hpc_anna/Kaggle_DRD/caffeinput/grb10size256/drdnet_mean_train.binaryproto"
   }
   data_param {
     source: "/storage/hpc_anna/Kaggle_DRD/caffeinput/grb10size256/ilsvrc12_test_lmdb"
@@ -66,7 +66,7 @@ layer {
     decay_mult: 0
   }
   inner_product_param {
-    num_output: 100
+    num_output: 1000
     weight_filler {
       type: "gaussian"
       std: 0.01

@@ -9,7 +9,7 @@ layer {
   }
   transform_param {
     mirror: false
-    mean_file: "/storage/hpc_anna/Kaggle_DRD/caffeinput/grb10size256/drdnet_mean_val.binaryproto"
+    mean_file: "/storage/hpc_anna/Kaggle_DRD/caffeinput/grb10size256/drdnet_mean_train.binaryproto"
   }
   data_param {
     source: "/storage/hpc_anna/Kaggle_DRD/caffeinput/grb10size256/ilsvrc12_val_lmdb"
