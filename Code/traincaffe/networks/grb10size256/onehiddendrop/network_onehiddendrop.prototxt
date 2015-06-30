@@ -27,7 +27,6 @@ layer {
   }
   transform_param {
     mirror: false
-    #crop_size: 227
     mean_file: "/storage/hpc_anna/Kaggle_DRD/caffeinput/grb10size256/drdnet_mean_val.binaryproto"
   }
   data_param {
@@ -85,7 +84,7 @@ layer {
     decay_mult: 0
   }
   inner_product_param {
-    num_output: 100
+    num_output: 1000
     weight_filler {
       type: "gaussian"
       std: 0.01
