@@ -17,7 +17,7 @@ NSAMPLES=$(ls "/storage/hpc_anna/Kaggle_DRD/"$PREFIX"images/"$PREPROC"/"$SUBSET"
 echo "Running with PREFIX="$PREFIX" PREPROC="$PREPROC" MODELNAME="$MODELNAME" NITER="$NITER" SUBSET="$SUBSET" and NSAMPLES="$NSAMPLES
 read -n1 -r -p "Is it OK? (any key if yes, ^C if no)" key
 
-source ~/.bash_profile
+#source ~/.bash_profile
 # create output directories
 mkdir "/storage/hpc_anna/Kaggle_DRD/"$PREFIX"features/"$PREPROC
 chmod 777 "/storage/hpc_anna/Kaggle_DRD/"$PREFIX"features/"$PREPROC
@@ -28,15 +28,15 @@ chmod 777 "/storage/hpc_anna/Kaggle_DRD/"$PREFIX"features/"$PREPROC"/model_"$MOD
 rm -rf "/storage/hpc_anna/Kaggle_DRD/"$PREFIX"features/"$PREPROC"/features_"$MODELNAME"_"$SUBSET
 
 # extract
-srun --partition=gpu --gres=gpu:1 --constraint=K20 --mem=20000 \
+srun --partition=long --gres=gpu:1 --constraint=K20 --mem=20000 \
 $HOME"/Software/Caffe/build/tools/extract_features.bin" "/storage/hpc_anna/Kaggle_DRD/"$PREFIX"caffeinput/"$PREPROC"/model_"$MODELNAME"/model_iter_"$NITER".caffemodel" \
 $HOME"/Kaggle/Diabetic-Retinopathy-Detection/Code/traincaffe/networks/"$PREPROC"/"$MODELNAME"/network_"$MODELNAME"_"$SUBSET".prototxt" \
 prob \
 "/storage/hpc_anna/Kaggle_DRD/"$PREFIX"features/"$PREPROC"/features_"$MODELNAME"_"$SUBSET $NSAMPLES lmdb GPU 0
 
 # wait until features folder is stored to the hard drive
-echo "Sleeping ..."
-sleep 60
+#echo "Sleeping ..."
+#sleep 10
 
 # change permissions to the extracted features
 chmod -R 777 "/storage/hpc_anna/Kaggle_DRD/"$PREFIX"features/"$PREPROC"/features_"$MODELNAME"_"$SUBSET
@@ -95,17 +95,3 @@ else
 	fi
 	echo "k = "$kappa
 fi
-
-
-
-
-
-
-
-
-
-
-
-
-
-

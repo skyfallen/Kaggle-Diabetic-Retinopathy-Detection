@@ -1,0 +1,20 @@
+net: "networks/b10size256/imagenet_simple/network_imagenet_simple.prototxt"
+# test set size / test batch size = 7026 / 128 = 54
+test_iter: 54
+# epoch = train set size / train batch size = 11370 / 256 = 88
+test_interval: 88
+base_lr: 0.001
+lr_policy: "fixed"
+#gamma: 0.1
+# after every 10 epochs lower learning rate
+#stepsize: 880
+# display after every epoch
+display: 88
+# do 30 epochs = 30 * 88 = 2640 iterations
+max_iter: 2640
+momentum: 0.9
+#weight_decay: 0.0005
+# take snapshot after each epoch
+snapshot: 88
+snapshot_prefix: "/storage/hpc_anna/Kaggle_DRD/caffeinput/b10size256/model_imagenet_simple/model"
+solver_mode: GPU

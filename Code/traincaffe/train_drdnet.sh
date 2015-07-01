@@ -14,7 +14,7 @@ MODELNAME=$3
 echo "Running with PREFIX="$PREFIX" PREPROC="$PREPROC" MODELNAME="$MODELNAME
 read -n1 -r -p "Is it OK? (any key if yes, ^C if no)" key
 
-source ~/.bash_profile
+#source ~/.bash_profile
 
 if [ -f "/storage/hpc_anna/Kaggle_DRD/"$PREFIX"caffeinput/"$PREPROC"/model_"$MODELNAME"/log.txt" ]; then
     echo "File log.txt already exists in the provided directory! Please, delete log.txt and corresponding caffemodel files prior to training new model."
