@@ -1,0 +1,107 @@
+2015-06-30T21:28:07.478+0300 I JOURNAL  [initandlisten] journal dir=/home/hpc_anna1985/Kaggle/Diabetic-Retinopathy-Detection/Code/spearmint/drd/journal
+2015-06-30T21:28:07.479+0300 I JOURNAL  [initandlisten] recover : no journal files present, no recovery needed
+2015-06-30T21:28:07.511+0300 I JOURNAL  [durability] Durability thread started
+2015-06-30T21:28:07.511+0300 I JOURNAL  [journal writer] Journal writer thread started
+2015-06-30T21:28:07.511+0300 I CONTROL  [initandlisten] MongoDB starting : pid=7495 port=27017 dbpath=/home/hpc_anna1985/Kaggle/Diabetic-Retinopathy-Detection/Code/spearmint/drd/ 64-bit host=juur
+2015-06-30T21:28:07.512+0300 I CONTROL  [initandlisten] 
+2015-06-30T21:28:07.512+0300 I CONTROL  [initandlisten] ** WARNING: You are running on a NUMA machine.
+2015-06-30T21:28:07.512+0300 I CONTROL  [initandlisten] **          We suggest launching mongod like this to avoid performance problems:
+2015-06-30T21:28:07.512+0300 I CONTROL  [initandlisten] **              numactl --interleave=all mongod [other options]
+2015-06-30T21:28:07.512+0300 I CONTROL  [initandlisten] 
+2015-06-30T21:28:07.512+0300 I CONTROL  [initandlisten] ** WARNING: /sys/kernel/mm/transparent_hugepage/enabled is 'always'.
+2015-06-30T21:28:07.512+0300 I CONTROL  [initandlisten] **        We suggest setting it to 'never'
+2015-06-30T21:28:07.512+0300 I CONTROL  [initandlisten] 
+2015-06-30T21:28:07.512+0300 I CONTROL  [initandlisten] ** WARNING: /sys/kernel/mm/transparent_hugepage/defrag is 'always'.
+2015-06-30T21:28:07.512+0300 I CONTROL  [initandlisten] **        We suggest setting it to 'never'
+2015-06-30T21:28:07.512+0300 I CONTROL  [initandlisten] 
+2015-06-30T21:28:07.512+0300 I CONTROL  [initandlisten] db version v3.0.4
+2015-06-30T21:28:07.512+0300 I CONTROL  [initandlisten] git version: 0481c958daeb2969800511e7475dc66986fa9ed5
+2015-06-30T21:28:07.512+0300 I CONTROL  [initandlisten] build info: Linux build9.nj1.10gen.cc 2.6.32-431.3.1.el6.x86_64 #1 SMP Fri Jan 3 21:39:27 UTC 2014 x86_64 BOOST_LIB_VERSION=1_49
+2015-06-30T21:28:07.512+0300 I CONTROL  [initandlisten] allocator: tcmalloc
+2015-06-30T21:28:07.512+0300 I CONTROL  [initandlisten] options: { processManagement: { fork: true }, storage: { dbPath: "/home/hpc_anna1985/Kaggle/Diabetic-Retinopathy-Detection/Code/spearmint/drd/" }, systemLog: { destination: "file", path: "/home/hpc_anna1985/Kaggle/Diabetic-Retinopathy-Detection/Code/spearmint/drd/log.txt" } }
+2015-06-30T21:28:07.513+0300 I INDEX    [initandlisten] allocating new ns file /home/hpc_anna1985/Kaggle/Diabetic-Retinopathy-Detection/Code/spearmint/drd/local.ns, filling with zeroes...
+2015-06-30T21:28:07.557+0300 I STORAGE  [FileAllocator] allocating new datafile /home/hpc_anna1985/Kaggle/Diabetic-Retinopathy-Detection/Code/spearmint/drd/local.0, filling with zeroes...
+2015-06-30T21:28:07.557+0300 I STORAGE  [FileAllocator] creating directory /home/hpc_anna1985/Kaggle/Diabetic-Retinopathy-Detection/Code/spearmint/drd/_tmp
+2015-06-30T21:28:07.558+0300 I STORAGE  [FileAllocator] done allocating datafile /home/hpc_anna1985/Kaggle/Diabetic-Retinopathy-Detection/Code/spearmint/drd/local.0, size: 64MB,  took 0 secs
+2015-06-30T21:28:07.565+0300 I NETWORK  [initandlisten] waiting for connections on port 27017
+2015-06-30T21:29:35.554+0300 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:50308 #1 (1 connection now open)
+2015-06-30T21:29:35.555+0300 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:50309 #2 (2 connections now open)
+2015-06-30T21:29:35.951+0300 I INDEX    [conn2] allocating new ns file /home/hpc_anna1985/Kaggle/Diabetic-Retinopathy-Detection/Code/spearmint/drd/spearmint.ns, filling with zeroes...
+2015-06-30T21:29:35.990+0300 I STORAGE  [FileAllocator] allocating new datafile /home/hpc_anna1985/Kaggle/Diabetic-Retinopathy-Detection/Code/spearmint/drd/spearmint.0, filling with zeroes...
+2015-06-30T21:29:35.991+0300 I STORAGE  [FileAllocator] done allocating datafile /home/hpc_anna1985/Kaggle/Diabetic-Retinopathy-Detection/Code/spearmint/drd/spearmint.0, size: 64MB,  took 0 secs
+2015-06-30T21:29:36.137+0300 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:50310 #3 (3 connections now open)
+2015-06-30T21:29:36.138+0300 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:50311 #4 (4 connections now open)
+2015-06-30T21:29:36.149+0300 I NETWORK  [conn4] end connection 127.0.0.1:50311 (3 connections now open)
+2015-06-30T21:29:36.149+0300 I NETWORK  [conn3] end connection 127.0.0.1:50310 (3 connections now open)
+2015-06-30T21:29:41.528+0300 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:50312 #5 (3 connections now open)
+2015-06-30T21:29:41.529+0300 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:50313 #6 (4 connections now open)
+2015-06-30T21:29:41.536+0300 I NETWORK  [conn5] end connection 127.0.0.1:50312 (3 connections now open)
+2015-06-30T21:29:41.536+0300 I NETWORK  [conn6] end connection 127.0.0.1:50313 (3 connections now open)
+2015-06-30T21:30:38.073+0300 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:50333 #7 (3 connections now open)
+2015-06-30T21:30:38.074+0300 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:50334 #8 (4 connections now open)
+2015-06-30T21:30:38.084+0300 I NETWORK  [conn7] end connection 127.0.0.1:50333 (3 connections now open)
+2015-06-30T21:30:38.084+0300 I NETWORK  [conn8] end connection 127.0.0.1:50334 (3 connections now open)
+2015-06-30T21:31:16.963+0300 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:50343 #9 (3 connections now open)
+2015-06-30T21:31:16.964+0300 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:50344 #10 (4 connections now open)
+2015-06-30T21:31:16.974+0300 I NETWORK  [conn10] end connection 127.0.0.1:50344 (3 connections now open)
+2015-06-30T21:31:16.974+0300 I NETWORK  [conn9] end connection 127.0.0.1:50343 (3 connections now open)
+2015-06-30T21:31:46.892+0300 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:50355 #11 (3 connections now open)
+2015-06-30T21:31:46.894+0300 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:50356 #12 (4 connections now open)
+2015-06-30T21:31:46.902+0300 I NETWORK  [conn11] end connection 127.0.0.1:50355 (3 connections now open)
+2015-06-30T21:31:46.902+0300 I NETWORK  [conn12] end connection 127.0.0.1:50356 (3 connections now open)
+2015-06-30T21:32:14.141+0300 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:50357 #13 (3 connections now open)
+2015-06-30T21:32:14.142+0300 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:50358 #14 (4 connections now open)
+2015-06-30T21:32:14.149+0300 I NETWORK  [conn13] end connection 127.0.0.1:50357 (3 connections now open)
+2015-06-30T21:32:14.149+0300 I NETWORK  [conn14] end connection 127.0.0.1:50358 (3 connections now open)
+2015-06-30T21:33:07.200+0300 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:50387 #15 (3 connections now open)
+2015-06-30T21:33:07.201+0300 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:50388 #16 (4 connections now open)
+2015-06-30T21:33:07.211+0300 I NETWORK  [conn15] end connection 127.0.0.1:50387 (3 connections now open)
+2015-06-30T21:33:07.211+0300 I NETWORK  [conn16] end connection 127.0.0.1:50388 (3 connections now open)
+2015-06-30T21:33:42.132+0300 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:50401 #17 (3 connections now open)
+2015-06-30T21:33:42.133+0300 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:50402 #18 (4 connections now open)
+2015-06-30T21:33:42.141+0300 I NETWORK  [conn18] end connection 127.0.0.1:50402 (3 connections now open)
+2015-06-30T21:33:42.141+0300 I NETWORK  [conn17] end connection 127.0.0.1:50401 (3 connections now open)
+2015-06-30T21:34:14.771+0300 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:50408 #19 (3 connections now open)
+2015-06-30T21:34:14.773+0300 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:50409 #20 (4 connections now open)
+2015-06-30T21:34:14.783+0300 I NETWORK  [conn19] end connection 127.0.0.1:50408 (3 connections now open)
+2015-06-30T21:34:14.783+0300 I NETWORK  [conn20] end connection 127.0.0.1:50409 (3 connections now open)
+2015-06-30T21:35:02.703+0300 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:50434 #21 (3 connections now open)
+2015-06-30T21:35:02.705+0300 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:50435 #22 (4 connections now open)
+2015-06-30T21:35:02.715+0300 I NETWORK  [conn21] end connection 127.0.0.1:50434 (3 connections now open)
+2015-06-30T21:35:02.715+0300 I NETWORK  [conn22] end connection 127.0.0.1:50435 (2 connections now open)
+2015-06-30T21:35:34.280+0300 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:50453 #23 (3 connections now open)
+2015-06-30T21:35:34.282+0300 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:50454 #24 (4 connections now open)
+2015-06-30T21:35:34.289+0300 I NETWORK  [conn24] end connection 127.0.0.1:50454 (3 connections now open)
+2015-06-30T21:35:34.289+0300 I NETWORK  [conn23] end connection 127.0.0.1:50453 (3 connections now open)
+2015-06-30T21:36:19.084+0300 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:50459 #25 (3 connections now open)
+2015-06-30T21:36:19.085+0300 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:50460 #26 (4 connections now open)
+2015-06-30T21:36:19.094+0300 I NETWORK  [conn26] end connection 127.0.0.1:50460 (3 connections now open)
+2015-06-30T21:36:19.094+0300 I NETWORK  [conn25] end connection 127.0.0.1:50459 (3 connections now open)
+2015-06-30T21:37:23.448+0300 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:50479 #27 (3 connections now open)
+2015-06-30T21:37:23.449+0300 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:50480 #28 (4 connections now open)
+2015-06-30T21:37:23.458+0300 I NETWORK  [conn27] end connection 127.0.0.1:50479 (3 connections now open)
+2015-06-30T21:37:23.458+0300 I NETWORK  [conn28] end connection 127.0.0.1:50480 (3 connections now open)
+2015-06-30T21:38:10.557+0300 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:50497 #29 (3 connections now open)
+2015-06-30T21:38:10.558+0300 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:50498 #30 (4 connections now open)
+2015-06-30T21:38:10.568+0300 I NETWORK  [conn29] end connection 127.0.0.1:50497 (3 connections now open)
+2015-06-30T21:38:10.568+0300 I NETWORK  [conn30] end connection 127.0.0.1:50498 (3 connections now open)
+2015-06-30T21:39:18.859+0300 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:50518 #31 (3 connections now open)
+2015-06-30T21:39:18.860+0300 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:50519 #32 (4 connections now open)
+2015-06-30T21:39:18.868+0300 I NETWORK  [conn32] end connection 127.0.0.1:50519 (3 connections now open)
+2015-06-30T21:39:18.868+0300 I NETWORK  [conn31] end connection 127.0.0.1:50518 (3 connections now open)
+2015-06-30T21:39:56.989+0300 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:50530 #33 (3 connections now open)
+2015-06-30T21:39:56.990+0300 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:50531 #34 (4 connections now open)
+2015-06-30T21:39:57.001+0300 I NETWORK  [conn33] end connection 127.0.0.1:50530 (3 connections now open)
+2015-06-30T21:39:57.001+0300 I NETWORK  [conn34] end connection 127.0.0.1:50531 (3 connections now open)
+2015-06-30T21:40:54.416+0300 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:50563 #35 (3 connections now open)
+2015-06-30T21:40:54.418+0300 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:50564 #36 (4 connections now open)
+2015-06-30T21:40:54.428+0300 I NETWORK  [conn35] end connection 127.0.0.1:50563 (3 connections now open)
+2015-06-30T21:40:54.428+0300 I NETWORK  [conn36] end connection 127.0.0.1:50564 (3 connections now open)
+2015-06-30T21:41:12.710+0300 I NETWORK  [conn2] end connection 127.0.0.1:50309 (1 connection now open)
+2015-06-30T21:41:12.710+0300 I NETWORK  [conn1] end connection 127.0.0.1:50308 (1 connection now open)
+2015-06-30T22:05:30.502+0300 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:51047 #37 (1 connection now open)
+2015-06-30T22:05:30.503+0300 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:51048 #38 (2 connections now open)
+2015-06-30T22:05:33.922+0300 I STORAGE  [journal writer] In File::open(), ::open for '/home/hpc_anna1985/Kaggle/Diabetic-Retinopathy-Detection/Code/spearmint/drd/journal/lsn' failed with errno:2 No such file or directory
+2015-06-30T22:05:33.922+0300 I JOURNAL  [journal writer] warning: open of lsn file failed
+2015-06-30T22:06:01.033+0300 I NETWORK  [conn37] end connection 127.0.0.1:51047 (1 connection now open)
+2015-06-30T22:06:01.033+0300 I NETWORK  [conn38] end connection 127.0.0.1:51048 (1 connection now open)
