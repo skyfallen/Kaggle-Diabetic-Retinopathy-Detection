@@ -40,11 +40,12 @@ for clss,filenames in new_train.iteritems():
 	for filename in filenames:
 		if count % 100 == 0:
 			print count
+		source_file = source + str(filename)
 		if os.path.exists(str(destination + str(filename))):
                         while os.path.exists(str(destination + str(filename))):
-                                filename = filename + '1'
+                                filename = filename.split('.')[0] + '1' + '.' + filename.split('.')[1]
 			with open(path_to_labels + "train.txt", 'a') as f:
-				f.write(filename + ' ' + str(clss))
+				f.write(filename + ' ' + str(clss) + '\n')
 			f.close()
-		shutil.copyfile((source + str(filename)),(destination + str(filename)))
+		shutil.copyfile((source_file),(destination + str(filename)))
 		count=count + 1
