@@ -6,7 +6,7 @@ import re
 import shutil
 
 # Path to train.txt
-path_to_labels = "/storage/hpc_anna/Kaggle_DRD/caffeinput/augm256/"
+path_to_labels = "/storage/hpc_anna/Kaggle_DRD/caffeinput/b400size256/"
 
 # Read in train.txt
 old_train = {0:[], 1:[], 2:[],3:[], 4:[]}
@@ -26,21 +26,25 @@ with open(path_to_labels + "train.txt") as f:
 		old_train[int(clss)].append(filename)
 
 new_train = {0:[], 1:[], 2:[],3:[], 4:[]}
-new_train[4] = old_train[4]
-new_train[3] = np.random.choice(old_train[3], len(new_train[4]), replace = False)
-new_train[2] = np.random.choice(old_train[2], len(new_train[4]), replace = False)
-new_train[1] = np.random.choice(old_train[1], len(new_train[4]), replace = False)
-new_train[0] = np.random.choice(old_train[0], len(new_train[4]), replace = False)
+new_train[0] = old_train[0]
+new_train[1] = np.random.choice(old_train[1], len(new_train[0]), replace = True)
+new_train[2] = np.random.choice(old_train[2], len(new_train[0]), replace = True)
+new_train[3] = np.random.choice(old_train[3], len(new_train[0]), replace = True)
+new_train[4] = np.random.choice(old_train[4], len(new_train[0]), replace = True)
 
 source = "/storage/hpc_anna/Kaggle_DRD/images/augm256/train/"
-destination = "/storage/hpc_anna/Kaggle_DRD/images/b10size256/train/"
+destination = "/storage/hpc_anna/Kaggle_DRD/images/b400size256/train/"
 
 count = 0
 for clss,filenames in new_train.iteritems():
 	for filename in filenames:
 		if count % 100 == 0:
 			print count
+		if os.path.exists(str(destination + str(filename))):
+                        while os.path.exists(str(destination + str(filename))):
+                                filename = filename + '1'
+			with open(path_to_labels + "train.txt", 'a') as f:
+				f.write(filename + ' ' + str(clss))
+			f.close()
 		shutil.copyfile((source + str(filename)),(destination + str(filename)))
-		if not os.path.exists(str(destination + str(filename))):
-                       print 'file doesnt exist' + str(destination + str(filename)) 
 		count=count + 1

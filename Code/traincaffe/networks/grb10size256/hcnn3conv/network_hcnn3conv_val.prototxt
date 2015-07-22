@@ -227,6 +227,15 @@ layer {
     }
   }
 }
+layer {
+  name: "drop"
+  type: "Dropout"
+  bottom: "fc1"
+  top: "fc1"
+  dropout_param {
+    dropout_ratio: 0.5
+  }
+}
 
 layer {
   name: "fc2"
@@ -253,6 +262,16 @@ layer {
     }
   }
 }
+layer {
+  name: "drop"
+  type: "Dropout"
+  bottom: "fc2"
+  top: "fc2"
+  dropout_param {
+    dropout_ratio: 0.5
+  }
+}
+
 layer {
   name: "accuracy"
   type: "Accuracy"

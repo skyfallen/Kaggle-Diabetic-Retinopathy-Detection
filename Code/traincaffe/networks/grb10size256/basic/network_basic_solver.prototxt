@@ -9,6 +9,6 @@ display: 100
 max_iter: 450000
 momentum: 0.9
 weight_decay: 0.0005
-snapshot: 100
-snapshot_prefix: "/storage/hpc_anna/Kaggle_DRD/caffeinput/grb10size256/model_basic"
+snapshot: 1000
+snapshot_prefix: "/storage/hpc_anna/Kaggle_DRD/caffeinput/grb10size256/model_basic/model"
 solver_mode: GPU
