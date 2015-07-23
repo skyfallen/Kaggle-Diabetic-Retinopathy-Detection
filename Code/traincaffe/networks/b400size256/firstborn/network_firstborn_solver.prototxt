@@ -1,0 +1,14 @@
+net: "/home/hpc_dmytro/Kaggle/Diabetic-Retinopathy-Detection/Code/traincaffe/networks/b400size256/firstborn/network_firstborn.prototxt"
+test_iter: 1000
+test_interval: 1000
+base_lr: 0.0001
+lr_policy: "step"
+gamma: 0.1
+stepsize: 100000
+display: 1000
+max_iter: 1000000
+momentum: 0.9
+weight_decay: 0.0005
+snapshot: 1000
+snapshot_prefix: "/storage/hpc_anna/Kaggle_DRD/caffeinput/b400size256/model_firstborn/model"
+solver_mode: GPU
